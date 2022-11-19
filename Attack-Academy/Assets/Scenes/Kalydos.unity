@@ -478,6 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 0
   movementSpeed: 5
+  healthMax: 0
 --- !u!212 &1804227225
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -714,6 +715,18 @@ PrefabInstance:
     - target: {fileID: 2136504349862104779, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136504349989010770, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136504349989010770, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136504349989010770, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 109
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}

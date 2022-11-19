@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,8 @@ public class Enemy : Entity
             if (playerTransform == null)
                 return;
         }
+
+        agent.isStopped = true;
 
         distanceToPlayer = Vector2.Distance(playerTransform.position, this.transform.position);
 
@@ -141,7 +144,8 @@ public class Enemy : Entity
 
     private void MoveWithPathFinding()
     {
-        agent.SetDestination(Player.Instance.transform.position);
+        agent.isStopped = false;
+        agent.SetDestination(playerTransform.position);
     }
 
     private void MoveWithDesiredDirection(Vector2 desiredDirection)
@@ -150,7 +154,7 @@ public class Enemy : Entity
         for(int i = 0; i < numberCircleCast; i++)
         {
             Vector2 vectorToAdd = Quaternion.Euler(0, 0, 360f * i / numberCircleCast) * desiredDirection;
-            float scoreToAdd = Mathf.Cos(360f * i / numberCircleCast);
+            float scoreToAdd = Mathf.Cos(2 * 3.14f * i / numberCircleCast);
 
             RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.5f, vectorToAdd, maxRayCastDistance);
             Debug.DrawLine(transform.position, transform.position + (new Vector3(vectorToAdd.x, vectorToAdd.y, 0) * maxRayCastDistance));

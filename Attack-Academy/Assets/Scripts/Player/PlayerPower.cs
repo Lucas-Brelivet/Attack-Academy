@@ -121,7 +121,7 @@ public class PlayerPower : MonoBehaviour
     }
   
 
-    void ConeAttack(int damage)
+    void ConeAttack(float damage)
     {
         cone.GetComponent<ConeAttack>().damage = damage;
         cone.SetActive(true);
@@ -129,7 +129,7 @@ public class PlayerPower : MonoBehaviour
     }
 
 
-    void ZoneAttack(int damage)
+    void ZoneAttack(float damage)
     {
         zone.GetComponent<ZoneAttack>().damage = damage;
         zone.GetComponent<ZoneAttack>().placeZone();

@@ -6,4 +6,6 @@ public class Stele : MonoBehaviour
 {
     [SerializeField]
     public Utility.MagicType magicType;
+
+
 }

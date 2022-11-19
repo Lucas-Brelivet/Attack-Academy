@@ -76,4 +76,9 @@ public class Player : Entity
         int sign = delta < 0 ? -1 : 1;
         ScrollMagicType(sign);
     }
+
+    void Die()
+    {
+        print("ahah nul");
+    }
 }

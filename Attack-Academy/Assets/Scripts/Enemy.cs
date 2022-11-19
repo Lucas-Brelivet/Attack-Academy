@@ -181,4 +181,9 @@ public class Enemy : Entity
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, minDistancePathfinding);
     }
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
 }

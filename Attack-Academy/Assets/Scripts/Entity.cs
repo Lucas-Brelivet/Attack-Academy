@@ -18,6 +18,9 @@ public abstract class Entity : MonoBehaviour
     [SerializeField]
     protected float movementSpeed = 5f;
 
+    public float healthMax;
+    private float health;
+
     public virtual void Start()
     {
         steleList = FindObjectsOfType<Stele>();
@@ -87,4 +90,16 @@ public abstract class Entity : MonoBehaviour
         }
         minDistToStele = currentMinDistToStele;
     }
+
+    void TakeDamage(float dmg)
+    {
+        health -= dmg;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    protected abstract void Die(); 
+
 }

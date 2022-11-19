@@ -57,6 +57,15 @@ public class Enemy : Entity
 
     private void Update()
     {
+        if (Player.Instance.transform.position.x - transform.position.x  >= 0)
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
+        
         anim.SetFloat("Speed", movementSpeed / 5f);
         if(playerTransform == null)
         {
@@ -155,14 +164,13 @@ public class Enemy : Entity
     private void MoveWithPathFinding()
     {
         agent.isStopped = false;
-        float angle = Vector2.Angle(Vector2.right, agent.velocity);
-        if (angle > 90)
+        if (agent.velocity.x >= 0)
         {
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
         }
         else
         {
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
         }
         anim.SetFloat("Speed", agent.speed / 8f);
         agent.SetDestination(playerTransform.position);

@@ -14,6 +14,9 @@ public class Player : Entity
     [HideInInspector]
     public Controls controls;
 
+    public float manaMax = 100f;
+    public float mana{get; private set;}
+
     //The point towards which the player is moving
     private Vector2 moveTarget;
 
@@ -41,6 +44,10 @@ public class Player : Entity
         controls.Player.Enable();
         controls.Player.Move.performed += OnMove;
         controls.Player.ChangeMagicType.performed += OnChangeMagicType;
+
+        mana = manaMax;
+        UiManager.Instance.UpdateHealth();
+        UiManager.Instance.UpdateMana();
     }
 
     public override void Update()
@@ -82,5 +89,16 @@ public class Player : Entity
     public override void Die()
     {
         print("ahah nul");
+    }
+
+    public void ConsumeMana(float amount)
+    {
+        mana -= amount;
+        UiManager.Instance.UpdateMana();
+    }
+    public void RecoverMana(float amount)
+    {
+        mana += amount;
+        UiManager.Instance.UpdateHealth();
     }
 }

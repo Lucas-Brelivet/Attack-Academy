@@ -18,8 +18,8 @@ public abstract class Entity : MonoBehaviour
     [SerializeField]
     protected float movementSpeed = 5f;
 
-    public float healthMax;
-    protected float health;
+    public float healthMax = 100f;
+    public float health{get; private set;}
 
     public virtual void Start()
     {
@@ -30,13 +30,13 @@ public abstract class Entity : MonoBehaviour
         {
             minDistToStele.Add(magicType, float.PositiveInfinity);
         }
+
         health = healthMax;
     }
 
     public virtual void Update()
     {
         UpdateMinDistToStele();
-        
     }
 
     public void ComputePowerMultiplicator()

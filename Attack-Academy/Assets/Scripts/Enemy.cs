@@ -8,10 +8,12 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Animator))]
 
 public class Enemy : Entity
 {
     private NavMeshAgent agent;
+    private Animator anim;
 
     [SerializeField]
     float attackTimer;
@@ -45,12 +47,27 @@ public class Enemy : Entity
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        anim = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        anim.Play("Walk");
     }
 
     private void Update()
     {
-        print(health);
-        if (playerTransform == null)
+        if (Player.Instance.transform.position.x - transform.position.x  >= 0)
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
+        
+        anim.SetFloat("Speed", movementSpeed / 5f);
+        if(playerTransform == null)
         {
             playerTransform = Player.Instance?.transform;
             if (playerTransform == null)
@@ -140,12 +157,22 @@ public class Enemy : Entity
 
     private void Attack()
     {
+        anim.Play("Attack");
         lastAttackTime = Time.time;
     }
 
     private void MoveWithPathFinding()
     {
         agent.isStopped = false;
+        if (agent.velocity.x >= 0)
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
+        anim.SetFloat("Speed", agent.speed / 8f);
         agent.SetDestination(playerTransform.position);
     }
 
@@ -179,6 +206,14 @@ public class Enemy : Entity
 
         this.transform.position = this.transform.position + (new Vector3(bestDirection.x, bestDirection.y, 0) * Time.deltaTime * movementSpeed);
         lastMovedDirection = bestDirection;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject == Player.Instance.gameObject)
+        {
+            Debug.Log("Deal damage to player !");
+        }
     }
 
     void OnDrawGizmosSelected()

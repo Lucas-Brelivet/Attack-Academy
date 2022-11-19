@@ -9,7 +9,8 @@ public class Player : Entity
     public static Player Instance { set; private get; }
     NavMeshAgent agent;
 
-    private Controls controls;
+    [HideInInspector]
+    public Controls controls;
 
     //The point towards which the player is moving
     private Vector2 moveTarget;

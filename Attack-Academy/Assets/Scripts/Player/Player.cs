@@ -12,6 +12,7 @@ public class Player : Entity
 {
     public static Player Instance { get; private set; }
     NavMeshAgent agent;
+    private Animator animator;
 
     [HideInInspector]
     public Controls controls;
@@ -23,6 +24,8 @@ public class Player : Entity
     private Vector2 moveTarget;
 
     private bool move = false;
+
+    public Utility.Direction currentDirection{get; private set;} = Utility.Direction.Down;
 
     public Vector2 orientation; 
     void Awake()
@@ -48,8 +51,10 @@ public class Player : Entity
         controls.Player.ChangeMagicType.performed += OnChangeMagicType;
 
         mana = manaMax;
-        //UiManager.Instance.UpdateHealth();
-        //UiManager.Instance.UpdateMana();
+        UiManager.Instance.UpdateHealth();
+        UiManager.Instance.UpdateMana();
+
+        animator = GetComponent<Animator>();
     }
 
     public override void Update()
@@ -79,10 +84,41 @@ public class Player : Entity
         }
         //transform.Translate((moveTarget - (Vector2)(transform.position)).normalized * movementSpeed * Time.deltaTime);
         agent.SetDestination(new Vector3(moveTarget.x, moveTarget.y, transform.position.z));
-        if ((moveTarget - (Vector2) transform.position).magnitude < movementSpeed * Time.deltaTime)
+
+        Utility.Direction direction = Utility.Direction.Down;
+        if(Mathf.Abs(agent.velocity.x) > Mathf.Abs(agent.velocity.y))
+        {
+            direction = agent.velocity.x > 0 ? Utility.Direction.Right : Utility.Direction.Left;
+        }
+        else
+        {
+            direction = agent.velocity.y > 0 ? Utility.Direction.Up : Utility.Direction.Down;
+        }
+
+        if(direction != currentDirection)
+        {
+            currentDirection = direction;
+            switch(currentDirection)
+            {
+                case Utility.Direction.Down:
+                    animator.SetTrigger("WalkDown");
+                    break;
+                case Utility.Direction.Left:
+                    animator.SetTrigger("WalkLeft");
+                    break;
+                case Utility.Direction.Up:
+                    animator.SetTrigger("WalkUp");
+                    break;
+                case Utility.Direction.Right:
+                    animator.SetTrigger("WalkRight");
+                    break;
+            }
+        }
+
+        /* if((moveTarget - (Vector2) transform.position).magnitude < movementSpeed * Time.deltaTime)
         {
             move = false;
-        }
+        } */
     }
 
     private void OnChangeMagicType(InputAction.CallbackContext context)

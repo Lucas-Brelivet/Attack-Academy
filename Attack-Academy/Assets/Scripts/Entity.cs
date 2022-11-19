@@ -98,8 +98,7 @@ public abstract class Entity : MonoBehaviour
         currentMagicType = magicType;
     }
 
-    protected virtual void TakeDamage(float dmg)
-    public void TakeDamage(float dmg)
+    public virtual void TakeDamage(float dmg)
     {
         health -= dmg;
         if (health <= 0)

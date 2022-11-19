@@ -224,7 +224,7 @@ public class Enemy : Entity
         Gizmos.DrawWireSphere(transform.position, minDistancePathfinding);
     }
 
-    protected override void TakeDamage(float dmg)
+    public override void TakeDamage(float dmg)
     {
         base.TakeDamage(dmg);
         if (health > 0)

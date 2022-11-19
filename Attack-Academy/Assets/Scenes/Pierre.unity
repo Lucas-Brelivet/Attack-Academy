@@ -233,7 +233,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemiesPrefab:
   - type: 0
-    obj: {fileID: 0}
+    obj: {fileID: 1853488308039070038, guid: 315b4510d52d35848a12a3d32a72bcca, type: 3}
+  - type: 1
+    obj: {fileID: 1853488308039070038, guid: 315b4510d52d35848a12a3d32a72bcca, type: 3}
 --- !u!1 &637691715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,5 +1085,9 @@ MonoBehaviour:
   enemiesToSpawn:
   - type: 0
     delayBeforeNext: 1
+  - type: 0
+    delayBeforeNext: 0
+  - type: 0
+    delayBeforeNext: 0
   - type: 0
     delayBeforeNext: 0

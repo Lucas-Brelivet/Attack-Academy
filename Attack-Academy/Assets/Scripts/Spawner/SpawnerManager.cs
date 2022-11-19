@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
 {
+    public static SpawnerManager Instance { get; private set; }
+    
     public enum EnemyType
     {
         Skeleton,
@@ -22,16 +24,24 @@ public class SpawnerManager : MonoBehaviour
 
     private Dictionary<EnemyType, GameObject> enemiesPrefab;
     [SerializeField] private Enemy[] _enemiesPrefab;
-    private List<GameObject> enemiesSpawned;
+    private List<GameObject> enemiesSpawned = new List<GameObject>();
     private Spawner current;
 
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         enemiesPrefab = new Dictionary<EnemyType, GameObject>(_enemiesPrefab.Length);
         foreach (Enemy enemy in _enemiesPrefab)
         {
             enemiesPrefab.Add(enemy.type, enemy.obj);
         }
+        Debug.Log(enemiesPrefab.Keys);
 
         if (_enemiesPrefab.Length != Enum.GetNames(typeof(EnemyType)).Length)
         {

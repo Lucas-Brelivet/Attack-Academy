@@ -90,6 +90,12 @@ public class Player : Entity
         UiManager.Instance?.SelectMagicType(currentMagicType);
     }
 
+    public override void TakeDamage(float dmg)
+    {
+        base.TakeDamage(dmg);
+        UiManager.Instance.UpdateHealth();
+    }
+
     protected override void Die()
     {
         print("Player Dead");
@@ -104,6 +110,6 @@ public class Player : Entity
     public void RecoverMana(float amount)
     {
         mana += amount;
-        UiManager.Instance.UpdateHealth();
+        UiManager.Instance.UpdateMana();
     }
 }

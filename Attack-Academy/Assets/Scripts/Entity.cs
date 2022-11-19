@@ -19,7 +19,7 @@ public abstract class Entity : MonoBehaviour
     protected float movementSpeed = 5f;
 
     public float healthMax = 100f;
-    public float health{get; private set;}
+    public float health {get; private set;}
 
     public virtual void Start()
     {

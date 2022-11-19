@@ -79,7 +79,7 @@ public class Player : Entity
         UiManager.Instance?.SelectMagicType(currentMagicType);
     }
 
-    void Die()
+    protected override void Die()
     {
         print("ahah nul");
     }

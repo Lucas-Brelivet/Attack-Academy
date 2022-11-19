@@ -59,6 +59,10 @@ public class Player : Entity
         {
             Move();
         }
+
+        Vector2 mousePosition = controls.Player.MousePosition.ReadValue<Vector2>();
+        Vector3 target = Camera.main.ScreenToWorldPoint(mousePosition);
+        orientation = target;
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -72,7 +76,6 @@ public class Player : Entity
         {
             Vector2 mousePosition = controls.Player.MousePosition.ReadValue<Vector2>();
             moveTarget = Camera.main.ScreenToWorldPoint(mousePosition);
-            orientation = moveTarget;
         }
         //transform.Translate((moveTarget - (Vector2)(transform.position)).normalized * movementSpeed * Time.deltaTime);
         agent.SetDestination(new Vector3(moveTarget.x, moveTarget.y, transform.position.z));

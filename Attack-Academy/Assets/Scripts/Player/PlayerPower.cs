@@ -114,7 +114,7 @@ public class PlayerPower : MonoBehaviour
     {
         cone.GetComponent<ConeAttack>().damage = damage;
         cone.SetActive(true);
-        StartCoroutine(CooldownCone());    }
-
+        StartCoroutine(CooldownCone());
+    }
 
 }

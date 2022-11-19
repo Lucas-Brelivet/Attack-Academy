@@ -214,7 +214,8 @@ public class Enemy : Entity
     {
         if (other.gameObject == Player.Instance.gameObject)
         {
-            Debug.Log("Deal damage to player !");
+            Debug.Log("Deal damage to player");
+            Player.Instance.TakeDamage(1);
         }
     }
 
@@ -235,10 +236,19 @@ public class Enemy : Entity
 
     protected override void Die()
     {
+        movementSpeed = 0;
+        agent.speed = 0;
         anim.Play("Death");
         anim.Update(0.1f);
         AnimatorClipInfo[] acis = anim.GetCurrentAnimatorClipInfo(0);
-        Invoke(nameof(Delete), acis[^1].clip.length);
+        if (acis.Length > 0)
+        {
+            Invoke(nameof(Delete), acis[^1].clip.length + 0.5f);
+        }
+        else
+        {
+            Invoke(nameof(Delete), 1f);
+        }
     }
 
     private void Delete()

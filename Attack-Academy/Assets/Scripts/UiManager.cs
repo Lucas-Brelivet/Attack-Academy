@@ -39,7 +39,9 @@ public class UiManager : MonoBehaviour
     {
         SelectMagicType(Player.Instance.currentMagicType);
         healthBar.maxValue = Player.Instance.healthMax;
+        healthBar.value = Player.Instance.healthMax;
         manaBar.maxValue = Player.Instance.manaMax;
+        manaBar.value = Player.Instance.manaMax;
     }
 
     void Update()

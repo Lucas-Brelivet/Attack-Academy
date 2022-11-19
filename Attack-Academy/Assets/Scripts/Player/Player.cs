@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+
 [RequireComponent(typeof(NavMeshAgent))]
 
 public class Player : Entity
@@ -22,7 +24,7 @@ public class Player : Entity
 
     private bool move = false;
 
-    public float orientation; 
+    public Vector2 orientation; 
     void Awake()
     {
         if (Instance != null)
@@ -46,8 +48,8 @@ public class Player : Entity
         controls.Player.ChangeMagicType.performed += OnChangeMagicType;
 
         mana = manaMax;
-        UiManager.Instance.UpdateHealth();
-        UiManager.Instance.UpdateMana();
+        //UiManager.Instance.UpdateHealth();
+        //UiManager.Instance.UpdateMana();
     }
 
     public override void Update()
@@ -57,6 +59,10 @@ public class Player : Entity
         {
             Move();
         }
+
+        Vector2 mousePosition = controls.Player.MousePosition.ReadValue<Vector2>();
+        Vector3 target = Camera.main.ScreenToWorldPoint(mousePosition);
+        orientation = target;
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -72,6 +78,7 @@ public class Player : Entity
             moveTarget = Camera.main.ScreenToWorldPoint(mousePosition);
         }
         //transform.Translate((moveTarget - (Vector2)(transform.position)).normalized * movementSpeed * Time.deltaTime);
+        agent.SetDestination(new Vector3(moveTarget.x, moveTarget.y, transform.position.z));
         if ((moveTarget - (Vector2) transform.position).magnitude < movementSpeed * Time.deltaTime)
         {
             move = false;
@@ -86,9 +93,16 @@ public class Player : Entity
         UiManager.Instance?.SelectMagicType(currentMagicType);
     }
 
+    public override void TakeDamage(float dmg)
+    {
+        base.TakeDamage(dmg);
+        UiManager.Instance.UpdateHealth();
+    }
+
     protected override void Die()
     {
-        print("ahah nul");
+        print("Player Dead");
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void ConsumeMana(float amount)
@@ -99,6 +113,6 @@ public class Player : Entity
     public void RecoverMana(float amount)
     {
         mana += amount;
-        UiManager.Instance.UpdateHealth();
+        UiManager.Instance.UpdateMana();
     }
 }

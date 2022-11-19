@@ -6,12 +6,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.AI;
 public class Player : Entity
 {
-    private Player _instance;
+    public static Player Instance { set; private get; }
     NavMeshAgent agent;
-    public Player Instance
-    {
-        get{return _instance;}
-    }
 
     private Controls controls;
 
@@ -22,13 +18,16 @@ public class Player : Entity
 
     void Awake()
     {
-        if (_instance == null) _instance = this;
-        else if (_instance != this) Destroy(gameObject);
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         //navmesh
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-
     }
 
     void Start()

@@ -11,11 +11,11 @@ public class PlayerSpell
 {
     public Utility.MagicType magicType;
     public Utility.SpellType spellType;
-    public int costMult;
-    public int powerMult;
+    public float costMult;
+    public float powerMult;
     public float distMax;
-    public int cost { get; set; }
-    public int power { get; set; }
+    public float cost { get; set; }
+    public float power { get; set; }
 }
 
 
@@ -25,12 +25,17 @@ public class PlayerPower : MonoBehaviour
     Player player;
     [SerializeField] PlayerSpell[] playerSpells;
     [SerializeField] private float cooldownAttack;
+
     [SerializeField] private float durationConeSpell;
+    [SerializeField] GameObject cone;
+
+    [SerializeField] private float durationZoneSpell;
+    [SerializeField] GameObject zone;
+
     private bool canAttack = true;
 
     private Controls controls;
 
-    [SerializeField] GameObject cone;
 
     private void Start()
     {
@@ -41,6 +46,7 @@ public class PlayerPower : MonoBehaviour
         controls.Player.Attack2.performed += AttackTwo;
         controls.Player.Attack3.performed += AttackThree;
         cone.SetActive(false);
+        zone.SetActive(false);
     }
 
     private void Update()
@@ -54,8 +60,8 @@ public class PlayerPower : MonoBehaviour
     {
         foreach(var playerSpell in playerSpells)
         {
-            playerSpell.cost = 1 + (int)Mathf.Min(player.minDistToStele[playerSpell.magicType],playerSpell.distMax) * playerSpell.costMult;
-            playerSpell.power = (int)Mathf.Min(player.minDistToStele[playerSpell.magicType], playerSpell.distMax) * playerSpell.powerMult;
+            playerSpell.cost = 1 + Mathf.Min(player.minDistToStele[playerSpell.magicType],playerSpell.distMax) * playerSpell.costMult;
+            playerSpell.power = Mathf.Min(player.minDistToStele[playerSpell.magicType], playerSpell.distMax) * playerSpell.powerMult;
         }
     }
 
@@ -88,6 +94,10 @@ public class PlayerPower : MonoBehaviour
                     {
                         ConeAttack(spell.power);
                     }
+                    else if (spell.spellType == Utility.SpellType.Zone)
+                    {
+                        ZoneAttack(spell.power);
+                    }
 
 
 
@@ -109,6 +119,7 @@ public class PlayerPower : MonoBehaviour
         yield return new WaitForSeconds(durationConeSpell);
         cone.SetActive(false);
     }
+  
 
     void ConeAttack(int damage)
     {
@@ -117,4 +128,18 @@ public class PlayerPower : MonoBehaviour
         StartCoroutine(CooldownCone());
     }
 
+
+    void ZoneAttack(int damage)
+    {
+        zone.GetComponent<ZoneAttack>().damage = damage;
+        zone.GetComponent<ZoneAttack>().placeZone();
+        zone.SetActive(true);
+        StartCoroutine(CooldownZone());
+    }
+
+    IEnumerator CooldownZone()
+    {
+        yield return new WaitForSeconds(durationConeSpell);
+        zone.SetActive(false);
+    }
 }

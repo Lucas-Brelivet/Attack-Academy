@@ -27,7 +27,7 @@ public class SpawnerManager : MonoBehaviour
 
     private Dictionary<EnemyType, GameObject> enemiesPrefab;
     [SerializeField] private Enemy[] _enemiesPrefab;
-    private float[] spawnerStartTimer;
+    [HideInInspector] public float[] spawnerStartTimer;
 
     // Time when the next spawner will start
     public float spawnerTimeWait { get; private set; }
@@ -61,11 +61,16 @@ public class SpawnerManager : MonoBehaviour
             Debug.LogError("No Spawner in children of SpawnerManager");
             return;
         }
-
-        StartCoroutine(StartSpawners());
+        
+        Invoke("StartSpawners", 1f);
     }
 
-    IEnumerator StartSpawners()
+    void StartSpawners()
+    {
+        StartCoroutine(StartSpawnersCoroutine());
+    }
+
+    IEnumerator StartSpawnersCoroutine()
     {
         float t = 0;
         int i = 0;
@@ -110,7 +115,7 @@ public class SpawnerManager : MonoBehaviour
                     0,
                     float.PositiveInfinity);
             }
-
+            
             sp.spawnerStartTimer = _spawnerStartTimer.ToArray();
         }
 
@@ -118,6 +123,13 @@ public class SpawnerManager : MonoBehaviour
         {
             SpawnerManager sp = (SpawnerManager)target;
             _spawnerStartTimer = sp.spawnerStartTimer.ToList();
+            // SerializedObject serializedObject = new SerializedObject(sp);
+            // SerializedProperty serializedProperty = serializedObject.FindProperty("spawnerStartTimer");
+            // _spawnerStartTimer = new List<float>(serializedProperty.arraySize);
+            // for (int i = 0; i < serializedProperty.arraySize; i++)
+            // {
+            //     _spawnerStartTimer[i] = serializedProperty.GetArrayElementAtIndex(i).floatValue;
+            // }
         }
     }
     #endif

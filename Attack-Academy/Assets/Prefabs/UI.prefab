@@ -1547,6 +1547,8 @@ MonoBehaviour:
   gameCanvas: {fileID: 0}
   pauseCanvas: {fileID: 0}
   timeToWaveText: {fileID: 2136504349628800432}
+  lifeBar: {fileID: 2136504349835537031}
+  manaBar: {fileID: 2136504348247268722}
   fireButton: {fileID: 2136504349309619649}
   iceButton: {fileID: 2136504349515365767}
   lightningButton: {fileID: 2136504348481273254}

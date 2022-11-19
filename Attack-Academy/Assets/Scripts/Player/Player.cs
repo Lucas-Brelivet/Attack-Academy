@@ -22,7 +22,7 @@ public class Player : Entity
 
     private bool move = false;
 
-    public float orientation; 
+    public Vector2 orientation; 
     void Awake()
     {
         if (Instance != null)
@@ -46,8 +46,8 @@ public class Player : Entity
         controls.Player.ChangeMagicType.performed += OnChangeMagicType;
 
         mana = manaMax;
-        UiManager.Instance.UpdateHealth();
-        UiManager.Instance.UpdateMana();
+        //UiManager.Instance.UpdateHealth();
+        //UiManager.Instance.UpdateMana();
     }
 
     public override void Update()
@@ -70,8 +70,10 @@ public class Player : Entity
         {
             Vector2 mousePosition = controls.Player.MousePosition.ReadValue<Vector2>();
             moveTarget = Camera.main.ScreenToWorldPoint(mousePosition);
+            orientation = moveTarget;
         }
         //transform.Translate((moveTarget - (Vector2)(transform.position)).normalized * movementSpeed * Time.deltaTime);
+        agent.SetDestination(new Vector3(moveTarget.x, moveTarget.y, transform.position.z));
         if ((moveTarget - (Vector2) transform.position).magnitude < movementSpeed * Time.deltaTime)
         {
             move = false;

@@ -104,8 +104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 0
   movementSpeed: 5
-  healthMax: 100
+  healthMax: 0
   manaMax: 100
+  orientation: {x: 0, y: 0}
 --- !u!58 &3771008101134618921
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -154,7 +155,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 100
+  m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -179,14 +180,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpells:
   - magicType: 0
-    spellType: 0
-    costMult: 0
-    powerMult: 0
-    distMax: 0
-<<<<<<< HEAD
+    spellType: 2
+    costMult: 1
+    powerMult: 1
+    distMax: 100
   cooldownAttack: 1
   durationConeSpell: 2
-  cone: {fileID: 0}
+  cone: {fileID: 8187996502675787820}
 --- !u!1 &8187996502675787820
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,4 +264,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  cooldown: 0

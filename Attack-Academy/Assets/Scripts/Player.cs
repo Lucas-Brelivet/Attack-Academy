@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.AI;
 public class Player : Entity
 {
-    public static Player Instance { set; private get; }
+    public static Player Instance { get; private set; }
     NavMeshAgent agent;
 
     [HideInInspector]

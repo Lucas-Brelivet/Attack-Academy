@@ -105,6 +105,8 @@ MonoBehaviour:
   maxDistance: 0
   movementSpeed: 5
   healthMax: 0
+  manaMax: 100
+  orientation: {x: 0, y: 0}
 --- !u!58 &3771008101134618921
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -184,7 +186,7 @@ MonoBehaviour:
     distMax: 0
   cooldownAttack: 1
   durationConeSpell: 2
-  cone: {fileID: 0}
+  cone: {fileID: 8187996502675787820}
 --- !u!1 &8187996502675787820
 GameObject:
   m_ObjectHideFlags: 0

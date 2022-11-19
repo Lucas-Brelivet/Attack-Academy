@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -7,6 +10,7 @@ public class Entity : MonoBehaviour
     [SerializeField]
     protected float maxDistance;
     private Stele[] steleList;
+    public Dictionary<Utility.MagicType, float> minDistToStele { get; private set; }
     float powerMultiplicator;
     [SerializeField]
     protected Utility.MagicType currentMagicType = Utility.MagicType.Fire;
@@ -14,14 +18,19 @@ public class Entity : MonoBehaviour
     [SerializeField]
     protected float movementSpeed = 5f;
 
-    void Start()
+    public virtual void Start()
     {
         steleList = FindObjectsOfType<Stele>();
+        minDistToStele = new Dictionary<Utility.MagicType, float>();
+        foreach (Utility.MagicType magicType in Enum.GetValues(typeof(Utility.MagicType)))
+        {
+            minDistToStele.Add(magicType, float.PositiveInfinity);
+        }
     }
 
-    void Update()
+    public virtual void Update()
     {
-
+        UpdateMinDistToStele();
     }
 
     public void ComputePowerMultiplicator()
@@ -48,5 +57,29 @@ public class Entity : MonoBehaviour
             index = 0;
         }
         currentMagicType = (Utility.MagicType)values.GetValue(index);
+    }
+
+
+
+    private void UpdateMinDistToStele()
+    {
+        Dictionary<Utility.MagicType, float> currentMinDistToStele = minDistToStele;
+        foreach (var distFromStele in currentMinDistToStele.ToList())
+        {
+            currentMinDistToStele[distFromStele.Key] = float.PositiveInfinity;
+        }
+        if (steleList.Length > 0)
+        {
+            foreach(var stele in steleList)
+            {
+                float dist = Vector2.Distance(transform.position, stele.transform.position);
+                if (currentMinDistToStele[stele.magicType] > dist)
+                {
+                    currentMinDistToStele[stele.magicType] = dist;
+                }
+            }
+
+        }
+        minDistToStele = currentMinDistToStele;
     }
 }

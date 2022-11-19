@@ -30,16 +30,18 @@ public class Player : Entity
         agent.updateUpAxis = false;
     }
 
-    void Start()
+    public override void Start()
     {
+        base.Start();
         controls = new Controls();
         controls.Player.Enable();
         controls.Player.Move.performed += OnMove;
         controls.Player.ChangeMagicType.performed += OnChangeMagicType;
     }
 
-    void Update()
+    public override void Update()
     {
+        base.Update();
         if(move)
         {
             Move();

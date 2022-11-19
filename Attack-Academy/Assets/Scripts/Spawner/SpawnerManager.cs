@@ -14,6 +14,7 @@ public class SpawnerManager : MonoBehaviour
     public enum EnemyType
     {
         Skeleton,
+        Bat,
     }
 
     [Serializable]

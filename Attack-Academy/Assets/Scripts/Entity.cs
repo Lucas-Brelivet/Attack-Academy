@@ -25,7 +25,11 @@ public abstract class Entity : MonoBehaviour
         foreach (Stele stele in steleList)
         {
             if (stele.magicType == currentMagicType)
-                powerMultiplicator *= (Vector2.Distance(stele.transform.position, this.transform.position) / maxDistance);
+            {
+                float distance = Vector2.Distance(stele.transform.position, this.transform.position);
+                if (distance < maxDistance)
+                    powerMultiplicator *= distance / maxDistance;
+            }
         }
     }
 

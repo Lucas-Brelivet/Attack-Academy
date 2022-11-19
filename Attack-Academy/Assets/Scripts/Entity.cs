@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
     [SerializeField]
     protected float maxDistance;
@@ -14,14 +14,9 @@ public class Entity : MonoBehaviour
     [SerializeField]
     protected float movementSpeed = 5f;
 
-    void Start()
+    protected void Start()
     {
         steleList = FindObjectsOfType<Stele>();
-    }
-
-    void Update()
-    {
-
     }
 
     public void ComputePowerMultiplicator()

@@ -477,7 +477,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 0
-  currentMagicType: 0
   movementSpeed: 5
 --- !u!212 &1804227225
 SpriteRenderer:

@@ -13,7 +13,7 @@ public class Entity : MonoBehaviour
     public Dictionary<Utility.MagicType, float> minDistToStele { get; private set; }
     float powerMultiplicator;
     [SerializeField]
-    protected Utility.MagicType currentMagicType = Utility.MagicType.Fire;
+    public Utility.MagicType currentMagicType { get; private set; }
 
     [SerializeField]
     protected float movementSpeed = 5f;
@@ -21,6 +21,7 @@ public class Entity : MonoBehaviour
     public virtual void Start()
     {
         steleList = FindObjectsOfType<Stele>();
+        currentMagicType = Utility.MagicType.Fire;
         minDistToStele = new Dictionary<Utility.MagicType, float>();
         foreach (Utility.MagicType magicType in Enum.GetValues(typeof(Utility.MagicType)))
         {

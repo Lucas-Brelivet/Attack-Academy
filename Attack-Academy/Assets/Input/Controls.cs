@@ -80,6 +80,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeMagicType"",
+                    ""type"": ""Value"",
+                    ""id"": ""e7096cb9-7fdf-4d9b-9f27-904fba090ebd"",
+                    ""expectedControlType"": ""Delta"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -148,6 +157,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Attack4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4dd8de89-7515-43c9-8cb4-0e50269fe8c3"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeMagicType"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -162,6 +182,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_Attack2 = m_Player.FindAction("Attack2", throwIfNotFound: true);
         m_Player_Attack3 = m_Player.FindAction("Attack3", throwIfNotFound: true);
         m_Player_Attack4 = m_Player.FindAction("Attack4", throwIfNotFound: true);
+        m_Player_ChangeMagicType = m_Player.FindAction("ChangeMagicType", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -227,6 +248,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attack2;
     private readonly InputAction m_Player_Attack3;
     private readonly InputAction m_Player_Attack4;
+    private readonly InputAction m_Player_ChangeMagicType;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -237,6 +259,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Attack2 => m_Wrapper.m_Player_Attack2;
         public InputAction @Attack3 => m_Wrapper.m_Player_Attack3;
         public InputAction @Attack4 => m_Wrapper.m_Player_Attack4;
+        public InputAction @ChangeMagicType => m_Wrapper.m_Player_ChangeMagicType;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -264,6 +287,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Attack4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack4;
                 @Attack4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack4;
                 @Attack4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack4;
+                @ChangeMagicType.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeMagicType;
+                @ChangeMagicType.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeMagicType;
+                @ChangeMagicType.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeMagicType;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -286,6 +312,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Attack4.started += instance.OnAttack4;
                 @Attack4.performed += instance.OnAttack4;
                 @Attack4.canceled += instance.OnAttack4;
+                @ChangeMagicType.started += instance.OnChangeMagicType;
+                @ChangeMagicType.performed += instance.OnChangeMagicType;
+                @ChangeMagicType.canceled += instance.OnChangeMagicType;
             }
         }
     }
@@ -298,5 +327,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAttack2(InputAction.CallbackContext context);
         void OnAttack3(InputAction.CallbackContext context);
         void OnAttack4(InputAction.CallbackContext context);
+        void OnChangeMagicType(InputAction.CallbackContext context);
     }
 }

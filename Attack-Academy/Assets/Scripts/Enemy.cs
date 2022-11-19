@@ -224,7 +224,7 @@ public class Enemy : Entity
         Gizmos.DrawWireSphere(transform.position, minDistancePathfinding);
     }
 
-    protected override void Die()
+   public override void Die()
     {
         Destroy(gameObject);
     }

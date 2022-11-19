@@ -19,7 +19,7 @@ public abstract class Entity : MonoBehaviour
     protected float movementSpeed = 5f;
 
     public float healthMax;
-    private float health;
+    protected float health;
 
     public virtual void Start()
     {
@@ -30,11 +30,13 @@ public abstract class Entity : MonoBehaviour
         {
             minDistToStele.Add(magicType, float.PositiveInfinity);
         }
+        health = healthMax;
     }
 
     public virtual void Update()
     {
         UpdateMinDistToStele();
+        
     }
 
     public void ComputePowerMultiplicator()
@@ -96,7 +98,7 @@ public abstract class Entity : MonoBehaviour
         currentMagicType = magicType;
     }
 
-    void TakeDamage(float dmg)
+    public void TakeDamage(float dmg)
     {
         health -= dmg;
         if (health <= 0)
@@ -105,6 +107,6 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
-    protected abstract void Die(); 
+    public abstract void Die(); 
 
 }

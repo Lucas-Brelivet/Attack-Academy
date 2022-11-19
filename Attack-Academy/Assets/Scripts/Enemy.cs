@@ -49,7 +49,8 @@ public class Enemy : Entity
 
     private void Update()
     {
-        if(playerTransform == null)
+        print(health);
+        if (playerTransform == null)
         {
             playerTransform = Player.Instance?.transform;
             if (playerTransform == null)
@@ -186,7 +187,7 @@ public class Enemy : Entity
         Gizmos.DrawWireSphere(transform.position, minDistancePathfinding);
     }
 
-    void Die()
+   public override void Die()
     {
         Destroy(gameObject);
     }

@@ -19,6 +19,7 @@ public class Player : Entity
 
     private bool move = false;
 
+    public float orientation; 
     void Awake()
     {
         if (Instance != null)
@@ -64,8 +65,7 @@ public class Player : Entity
             moveTarget = Camera.main.ScreenToWorldPoint(mousePosition);
         }
         //transform.Translate((moveTarget - (Vector2)(transform.position)).normalized * movementSpeed * Time.deltaTime);
-        agent.SetDestination(new Vector3(moveTarget.x, moveTarget.y, transform.position.z));
-        if((moveTarget - (Vector2) transform.position).magnitude < movementSpeed * Time.deltaTime)
+        if ((moveTarget - (Vector2) transform.position).magnitude < movementSpeed * Time.deltaTime)
         {
             move = false;
         }
@@ -79,7 +79,7 @@ public class Player : Entity
         UiManager.Instance?.SelectMagicType(currentMagicType);
     }
 
-    void Die()
+    public override void Die()
     {
         print("ahah nul");
     }

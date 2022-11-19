@@ -15,6 +15,9 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI timeToWaveText;
 
+    [SerializeField] Slider healthBar;
+    [SerializeField] Slider manaBar;
+
     [SerializeField] Button fireButton;
     [SerializeField] Button iceButton;
     [SerializeField] Button lightningButton;
@@ -35,6 +38,8 @@ public class UiManager : MonoBehaviour
     void Start()
     {
         SelectMagicType(Player.Instance.currentMagicType);
+        healthBar.maxValue = Player.Instance.healthMax;
+        manaBar.maxValue = Player.Instance.manaMax;
     }
 
     void Update()
@@ -114,5 +119,14 @@ public class UiManager : MonoBehaviour
     private void MoveSelectionArrow(float x)
     {
         selectionArrow.transform.position = new Vector3(x, selectionArrow.transform.position.y, selectionArrow.transform.position.z);
+    }
+
+    public void UpdateHealth()
+    {
+        healthBar.value = Player.Instance.health;
+    }
+    public void UpdateMana()
+    {
+        manaBar.value = Player.Instance.mana;
     }
 }

@@ -478,6 +478,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 0
   movementSpeed: 5
+  healthMax: 100
+  manaMax: 100
 --- !u!212 &1804227225
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -611,6 +613,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2136504348247268620, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}
+      propertyPath: m_Name
+      value: ManaBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136504349420923680, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 2136504349103152053}
     - target: {fileID: 2136504349420923681, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}
       propertyPath: m_Name
       value: UI
@@ -707,6 +717,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2136504349835537025, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}
+      propertyPath: m_Name
+      value: HealthBar
+      objectReference: {fileID: 0}
     - target: {fileID: 2136504349862104779, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -717,3 +731,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}
+--- !u!114 &2136504349103152053 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2136504349835537031, guid: 849c0682e6b7070499e6bedf41bf4d72, type: 3}
+  m_PrefabInstance: {fileID: 2136504349103152051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

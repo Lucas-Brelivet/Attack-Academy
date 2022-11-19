@@ -11,7 +11,8 @@ public class Player : Entity
     public static Player Instance { get; private set; }
     NavMeshAgent agent;
 
-    private Controls controls;
+    [HideInInspector]
+    public Controls controls;
 
     //The point towards which the player is moving
     private Vector2 moveTarget;
@@ -75,6 +76,7 @@ public class Player : Entity
         float delta = context.ReadValue<float>();
         int sign = delta < 0 ? -1 : 1;
         ScrollMagicType(sign);
+        UiManager.Instance?.SelectMagicType(currentMagicType);
     }
 
     void Die()

@@ -8,8 +8,8 @@ public class Utility : MonoBehaviour
     {
         Fire,
         Ice,
-        Air,
-        Thunder
+        Lightning,
+        Wind
     };
 
     public enum EnemyState

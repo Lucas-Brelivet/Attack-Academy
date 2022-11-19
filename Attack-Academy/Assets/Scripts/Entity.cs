@@ -90,6 +90,11 @@ public abstract class Entity : MonoBehaviour
         }
         minDistToStele = currentMinDistToStele;
     }
+    
+    public void SetMagicType(Utility.MagicType magicType)
+    {
+        currentMagicType = magicType;
+    }
 
     void TakeDamage(float dmg)
     {

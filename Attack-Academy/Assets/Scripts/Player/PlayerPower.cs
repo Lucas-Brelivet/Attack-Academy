@@ -41,7 +41,6 @@ public class PlayerPower : MonoBehaviour
     private void Update()
     {
         UpdateCostAndPower();
-        print(player.currentMagicType);
 
     }
 

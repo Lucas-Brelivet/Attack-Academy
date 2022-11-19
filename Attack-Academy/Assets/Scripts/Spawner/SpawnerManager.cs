@@ -29,6 +29,7 @@ public class SpawnerManager : MonoBehaviour
     [SerializeField] private Enemy[] _enemiesPrefab;
     private float[] spawnerStartTimer;
 
+    // Time when the next spawner will start
     public float spawnerTimeWait { get; private set; }
     private List<GameObject> enemiesSpawned = new List<GameObject>();
 

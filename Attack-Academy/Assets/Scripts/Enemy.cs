@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
+
+[RequireComponent(typeof(NavMeshAgent))]
 
 public class Enemy : Entity
 {
+    private NavMeshAgent agent;
+
     [SerializeField]
     float attackTimer;
     [SerializeField]
@@ -35,6 +41,9 @@ public class Enemy : Entity
     {
         lastAttackTime = Time.time;
         playerTransform = Player.Instance?.transform;
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
 
     private void Update()
@@ -132,7 +141,7 @@ public class Enemy : Entity
 
     private void MoveWithPathFinding()
     {
-
+        agent.SetDestination(Player.Instance.transform.position);
     }
 
     private void MoveWithDesiredDirection(Vector2 desiredDirection)
@@ -165,5 +174,11 @@ public class Enemy : Entity
 
         this.transform.position = this.transform.position + (new Vector3(bestDirection.x, bestDirection.y, 0) * Time.deltaTime * movementSpeed);
         lastMovedDirection = bestDirection;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, minDistancePathfinding);
     }
 }

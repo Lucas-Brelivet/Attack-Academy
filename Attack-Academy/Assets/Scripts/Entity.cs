@@ -5,11 +5,15 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     [SerializeField]
-    float maxDistance;
+    protected float maxDistance;
     private Stele[] steleList;
     float powerMultiplicator;
     [SerializeField]
-    Utility.MagicType currentMagicType = Utility.MagicType.Fire;
+    protected Utility.MagicType currentMagicType = Utility.MagicType.Fire;
+
+    [SerializeField]
+    protected float movementSpeed = 5f;
+
     void Start()
     {
         steleList = FindObjectsOfType<Stele>();
@@ -28,5 +32,21 @@ public class Entity : MonoBehaviour
             if (stele.magicType == currentMagicType)
                 powerMultiplicator *= (Vector2.Distance(stele.transform.position, this.transform.position) / maxDistance);
         }
+    }
+
+    public void ScrollMagicType(int scrollvalue)
+    {
+        System.Array values = System.Enum.GetValues(typeof(Utility.MagicType));
+        int index = (int)currentMagicType;
+        index += scrollvalue;
+        if(index < 0)
+        {
+            index = values.Length-1;
+        }
+        if(index >= values.Length)
+        {
+            index = 0;
+        }
+        currentMagicType = (Utility.MagicType)values.GetValue(index);
     }
 }

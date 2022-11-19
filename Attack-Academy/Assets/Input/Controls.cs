@@ -85,7 +85,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""name"": ""ChangeMagicType"",
                     ""type"": ""Value"",
                     ""id"": ""e7096cb9-7fdf-4d9b-9f27-904fba090ebd"",
-                    ""expectedControlType"": ""Delta"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -161,7 +161,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4dd8de89-7515-43c9-8cb4-0e50269fe8c3"",
-                    ""path"": ""<Mouse>/scroll"",
+                    ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

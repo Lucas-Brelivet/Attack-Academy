@@ -6,11 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Player : Entity
 {
-    private Player _instance;
-    public Player Instance
-    {
-        get{return _instance;}
-    }
+    public static Player Instance { set; private get; }
 
     private Controls controls;
 
@@ -21,8 +17,12 @@ public class Player : Entity
 
     void Awake()
     {
-        if (_instance == null) _instance = this;
-        else if (_instance != this) Destroy(gameObject);
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
 
     void Start()
@@ -68,8 +68,8 @@ public class Player : Entity
         ScrollMagicType(sign);
     }
 
-    void OnDestroy()
-    {
-        Destroy(controls);
-    }
+    // void OnDestroy()
+    // {
+    //     Destroy(controls);
+    // }
 }

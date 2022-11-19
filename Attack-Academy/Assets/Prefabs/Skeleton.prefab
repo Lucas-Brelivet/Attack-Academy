@@ -114,6 +114,7 @@ MonoBehaviour:
   maxRayCastDistance: 3
   numberCircleCast: 10
   powerMult: 1
+  enemyMagicType: 1
 --- !u!58 &3497783523894671606
 CircleCollider2D:
   m_ObjectHideFlags: 0

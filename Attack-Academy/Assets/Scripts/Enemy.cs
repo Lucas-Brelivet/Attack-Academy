@@ -33,6 +33,8 @@ public class Enemy : Entity
     int numberCircleCast;
     [SerializeField]
     float powerMult;
+    [SerializeField]
+    Utility.MagicType enemyMagicType;
 
     private float lastAttackTime;
     Utility.EnemyState currentState;
@@ -217,7 +219,7 @@ public class Enemy : Entity
         if (other.gameObject == Player.Instance.gameObject)
         {
             Debug.Log("Deal damage to player");
-            Player.Instance.TakeDamage(Mathf.Min(this.minDistToStele[this.currentMagicType], this.maxDistance) * this.powerMult);
+            Player.Instance.TakeDamage(Mathf.Min(this.minDistToStele[this.enemyMagicType], this.maxDistance) * this.powerMult);
         }
     }
 

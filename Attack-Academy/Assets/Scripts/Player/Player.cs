@@ -11,13 +11,18 @@ public class Player : Entity
     public static Player Instance { get; private set; }
     NavMeshAgent agent;
 
-    private Controls controls;
+    [HideInInspector]
+    public Controls controls;
+
+    public float manaMax = 100f;
+    public float mana{get; private set;}
 
     //The point towards which the player is moving
     private Vector2 moveTarget;
 
     private bool move = false;
 
+    public float orientation; 
     void Awake()
     {
         if (Instance != null)
@@ -39,6 +44,10 @@ public class Player : Entity
         controls.Player.Enable();
         controls.Player.Move.performed += OnMove;
         controls.Player.ChangeMagicType.performed += OnChangeMagicType;
+
+        mana = manaMax;
+        UiManager.Instance.UpdateHealth();
+        UiManager.Instance.UpdateMana();
     }
 
     public override void Update()
@@ -63,8 +72,7 @@ public class Player : Entity
             moveTarget = Camera.main.ScreenToWorldPoint(mousePosition);
         }
         //transform.Translate((moveTarget - (Vector2)(transform.position)).normalized * movementSpeed * Time.deltaTime);
-        agent.SetDestination(new Vector3(moveTarget.x, moveTarget.y, transform.position.z));
-        if((moveTarget - (Vector2) transform.position).magnitude < movementSpeed * Time.deltaTime)
+        if ((moveTarget - (Vector2) transform.position).magnitude < movementSpeed * Time.deltaTime)
         {
             move = false;
         }
@@ -75,5 +83,22 @@ public class Player : Entity
         float delta = context.ReadValue<float>();
         int sign = delta < 0 ? -1 : 1;
         ScrollMagicType(sign);
+        UiManager.Instance?.SelectMagicType(currentMagicType);
+    }
+
+    protected override void Die()
+    {
+        print("ahah nul");
+    }
+
+    public void ConsumeMana(float amount)
+    {
+        mana -= amount;
+        UiManager.Instance.UpdateMana();
+    }
+    public void RecoverMana(float amount)
+    {
+        mana += amount;
+        UiManager.Instance.UpdateHealth();
     }
 }

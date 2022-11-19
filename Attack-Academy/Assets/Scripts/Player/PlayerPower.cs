@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.U2D;
 
 [System.Serializable]
 public class PlayerSpell
@@ -23,10 +24,13 @@ public class PlayerPower : MonoBehaviour
 {
     Player player;
     [SerializeField] PlayerSpell[] playerSpells;
-    [SerializeField] private float cooldown;
+    [SerializeField] private float cooldownAttack;
+    [SerializeField] private float durationConeSpell;
     private bool canAttack = true;
 
     private Controls controls;
+
+    [SerializeField] GameObject cone;
 
     private void Start()
     {
@@ -36,12 +40,12 @@ public class PlayerPower : MonoBehaviour
         controls.Player.Attack1.performed += AttackOne;
         controls.Player.Attack2.performed += AttackTwo;
         controls.Player.Attack3.performed += AttackThree;
+        cone.SetActive(false);
     }
 
     private void Update()
     {
         UpdateCostAndPower();
-        print(player.currentMagicType);
 
     }
 
@@ -80,9 +84,14 @@ public class PlayerPower : MonoBehaviour
                 var spell = spells.ElementAtOrDefault(number);
                 if (spell != null)
                 {
-                    //doattack
-                    print(spell.cost);
-                    Cooldown();
+                    if (spell.spellType == Utility.SpellType.Cone)
+                    {
+                        ConeAttack(spell.power);
+                    }
+
+
+
+                    StartCoroutine(Cooldown());
                 }
             }          
         }
@@ -91,7 +100,21 @@ public class PlayerPower : MonoBehaviour
     IEnumerator Cooldown()
     {
         canAttack = false;
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(cooldownAttack);
         canAttack = true;
     }
+
+    IEnumerator CooldownCone()
+    {
+        yield return new WaitForSeconds(durationConeSpell);
+        cone.SetActive(false);
+    }
+
+    void ConeAttack(int damage)
+    {
+        cone.GetComponent<ConeAttack>().damage = damage;
+        cone.SetActive(true);
+        StartCoroutine(CooldownCone());    }
+
+
 }

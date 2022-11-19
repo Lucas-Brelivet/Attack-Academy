@@ -18,6 +18,9 @@ public abstract class Entity : MonoBehaviour
     [SerializeField]
     protected float movementSpeed = 5f;
 
+    public float healthMax = 100f;
+    public float health{get; private set;}
+
     public virtual void Start()
     {
         steleList = FindObjectsOfType<Stele>();
@@ -27,6 +30,8 @@ public abstract class Entity : MonoBehaviour
         {
             minDistToStele.Add(magicType, float.PositiveInfinity);
         }
+
+        health = healthMax;
     }
 
     public virtual void Update()
@@ -87,4 +92,21 @@ public abstract class Entity : MonoBehaviour
         }
         minDistToStele = currentMinDistToStele;
     }
+    
+    public void SetMagicType(Utility.MagicType magicType)
+    {
+        currentMagicType = magicType;
+    }
+
+    public virtual void TakeDamage(float dmg)
+    {
+        health -= dmg;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    protected abstract void Die(); 
+
 }

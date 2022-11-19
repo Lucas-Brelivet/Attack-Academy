@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,12 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Animator))]
 
 public class Enemy : Entity
 {
     private NavMeshAgent agent;
+    private Animator anim;
 
     [SerializeField]
     float attackTimer;
@@ -44,16 +47,36 @@ public class Enemy : Entity
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        anim = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        base.Start();
+        anim.Play("Walk");
     }
 
     private void Update()
     {
+        base.Update();
+        if (Player.Instance.transform.position.x - transform.position.x  >= 0)
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
+        
+        anim.SetFloat("Speed", movementSpeed / 5f);
         if(playerTransform == null)
         {
             playerTransform = Player.Instance?.transform;
             if (playerTransform == null)
                 return;
         }
+
+        agent.isStopped = true;
 
         distanceToPlayer = Vector2.Distance(playerTransform.position, this.transform.position);
 
@@ -136,12 +159,23 @@ public class Enemy : Entity
 
     private void Attack()
     {
+        anim.Play("Attack");
         lastAttackTime = Time.time;
     }
 
     private void MoveWithPathFinding()
     {
-        agent.SetDestination(Player.Instance.transform.position);
+        agent.isStopped = false;
+        if (agent.velocity.x >= 0)
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
+        anim.SetFloat("Speed", agent.speed / 8f);
+        agent.SetDestination(playerTransform.position);
     }
 
     private void MoveWithDesiredDirection(Vector2 desiredDirection)
@@ -150,7 +184,7 @@ public class Enemy : Entity
         for(int i = 0; i < numberCircleCast; i++)
         {
             Vector2 vectorToAdd = Quaternion.Euler(0, 0, 360f * i / numberCircleCast) * desiredDirection;
-            float scoreToAdd = Mathf.Cos(360f * i / numberCircleCast);
+            float scoreToAdd = Mathf.Cos(2 * 3.14f * i / numberCircleCast);
 
             RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.5f, vectorToAdd, maxRayCastDistance);
             Debug.DrawLine(transform.position, transform.position + (new Vector3(vectorToAdd.x, vectorToAdd.y, 0) * maxRayCastDistance));
@@ -176,9 +210,39 @@ public class Enemy : Entity
         lastMovedDirection = bestDirection;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject == Player.Instance.gameObject)
+        {
+            Debug.Log("Deal damage to player !");
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, minDistancePathfinding);
+    }
+
+    public override void TakeDamage(float dmg)
+    {
+        base.TakeDamage(dmg);
+        if (health > 0)
+        {
+            anim.Play("TakeHit");
+        }
+    }
+
+    protected override void Die()
+    {
+        anim.Play("Death");
+        anim.Update(0.1f);
+        AnimatorClipInfo[] acis = anim.GetCurrentAnimatorClipInfo(0);
+        Invoke(nameof(Delete), acis[^1].clip.length);
+    }
+
+    private void Delete()
+    {
+        Destroy(gameObject);
     }
 }

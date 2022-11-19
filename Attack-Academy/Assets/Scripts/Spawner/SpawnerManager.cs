@@ -27,9 +27,9 @@ public class SpawnerManager : MonoBehaviour
 
     private Dictionary<EnemyType, GameObject> enemiesPrefab;
     [SerializeField] private Enemy[] _enemiesPrefab;
-    // public Dictionary<int, float> spawnerStartTimer;
-    [HideInInspector] public float[] spawnerStartTimer;
+    private float[] spawnerStartTimer;
 
+    public float spawnerTimeWait { get; private set; }
     private List<GameObject> enemiesSpawned = new List<GameObject>();
 
     void Awake()
@@ -70,6 +70,7 @@ public class SpawnerManager : MonoBehaviour
         int i = 0;
         foreach (Spawner s in transform.GetComponentsInChildren<Spawner>())
         {
+            spawnerTimeWait = Time.time + spawnerStartTimer[i] - t;
             yield return new WaitForSeconds(spawnerStartTimer[i] - t);
             s.StartWave();
             t += spawnerStartTimer[i];
@@ -83,40 +84,40 @@ public class SpawnerManager : MonoBehaviour
         spawnedEnemy.transform.position = position;
         enemiesSpawned.Add(spawnedEnemy);
     }
-}
-
-#if UNITY_EDITOR
-[CustomEditor(typeof(SpawnerManager))]
-public class ClientEditor : Editor
-{
-    private List<float> _spawnerStartTimer = new List<float>();
-    public override void OnInspectorGUI()
+    
+    #if UNITY_EDITOR
+    [CustomEditor(typeof(SpawnerManager))]
+    public class ClientEditor : Editor
     {
-        base.OnInspectorGUI();
-
-        SpawnerManager sp = (SpawnerManager)target;
-
-        Spawner[] spawners = sp.transform.GetComponentsInChildren<Spawner>();
-        for (int i = 0; i < spawners.Length; i++)
+        private List<float> _spawnerStartTimer = new List<float>();
+        public override void OnInspectorGUI()
         {
-            if (_spawnerStartTimer.Count <= i)
+            base.OnInspectorGUI();
+
+            SpawnerManager sp = (SpawnerManager)target;
+
+            Spawner[] spawners = sp.transform.GetComponentsInChildren<Spawner>();
+            for (int i = 0; i < spawners.Length; i++)
             {
-                _spawnerStartTimer.Add(0);
+                if (_spawnerStartTimer.Count <= i)
+                {
+                    _spawnerStartTimer.Add(0);
+                }
+
+                _spawnerStartTimer[i] = Mathf.Clamp(
+                    EditorGUILayout.FloatField(spawners[i].name + " time", _spawnerStartTimer[i]),
+                    0,
+                    float.PositiveInfinity);
             }
 
-            _spawnerStartTimer[i] = Mathf.Clamp(
-                EditorGUILayout.FloatField(spawners[i].name + " time", _spawnerStartTimer[i]),
-                0,
-                float.PositiveInfinity);
+            sp.spawnerStartTimer = _spawnerStartTimer.ToArray();
         }
 
-        sp.spawnerStartTimer = _spawnerStartTimer.ToArray();
+        void Awake()
+        {
+            SpawnerManager sp = (SpawnerManager)target;
+            _spawnerStartTimer = sp.spawnerStartTimer.ToList();
+        }
     }
-
-    void Awake()
-    {
-        SpawnerManager sp = (SpawnerManager)target;
-        _spawnerStartTimer = sp.spawnerStartTimer.ToList();
-    }
+    #endif
 }
-#endif

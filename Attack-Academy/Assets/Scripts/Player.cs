@@ -32,6 +32,7 @@ public class Player : Entity
 
     void Start()
     {
+        base.Start();
         controls = new Controls();
         controls.Player.Enable();
         controls.Player.Move.performed += OnMove;

@@ -236,9 +236,6 @@ MonoBehaviour:
     obj: {fileID: 0}
   - type: 1
     obj: {fileID: 0}
-  spawnerStartTimer:
-  - 1.63
-  - 2.89
 --- !u!1 &637691715
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,7 +441,7 @@ Transform:
   m_Children:
   - {fileID: 877450450}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &877450449
 GameObject:
@@ -760,7 +757,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1254875861
 GameObject:
@@ -805,7 +802,7 @@ GameObject:
   - component: {fileID: 1286941675}
   - component: {fileID: 1286941674}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -892,7 +889,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1478527989
 GameObject:

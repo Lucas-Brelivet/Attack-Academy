@@ -10,6 +10,7 @@ public abstract class Entity : MonoBehaviour
     float powerMultiplicator;
     [SerializeField]
     protected Utility.MagicType currentMagicType = Utility.MagicType.Fire;
+    public Utility.MagicType CurrentMagicType{get{return currentMagicType;}}
 
     [SerializeField]
     protected float movementSpeed = 5f;
@@ -43,5 +44,9 @@ public abstract class Entity : MonoBehaviour
             index = 0;
         }
         currentMagicType = (Utility.MagicType)values.GetValue(index);
+    }
+    public void SetMagicType(Utility.MagicType magicType)
+    {
+        currentMagicType = magicType;
     }
 }

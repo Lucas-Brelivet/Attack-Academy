@@ -8,7 +8,7 @@ public class Utility : MonoBehaviour
     {
         Fire,
         Ice,
-        Poison,
-        Earth
+        Lightning,
+        Wind
     };
 }

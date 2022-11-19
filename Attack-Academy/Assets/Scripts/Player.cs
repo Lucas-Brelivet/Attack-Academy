@@ -31,7 +31,7 @@ public class Player : Entity
         agent.updateUpAxis = false;
     }
 
-    void Start()
+    new void Start()
     {
         base.Start();
         controls = new Controls();
@@ -73,5 +73,6 @@ public class Player : Entity
         float delta = context.ReadValue<float>();
         int sign = delta < 0 ? -1 : 1;
         ScrollMagicType(sign);
+        UiManager.Instance?.SelectMagicType(currentMagicType);
     }
 }

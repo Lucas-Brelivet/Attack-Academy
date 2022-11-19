@@ -24,7 +24,7 @@ public class UiManager : MonoBehaviour
     void Update()
     {
         // int value = Mathf.Clamp((int)(SpawnerManager.Instance.spawnerTimeWait - Time.time), 0, int.MaxValue);
-        int value = (int) (SpawnerManager.Instance.spawnerTimeWait - Time.time);
+        int value = (int) (SpawnerManager.Instance.spawnerTimeWait - Time.time + 0.5f);
         if (value <= 0)
         {
             text.text = "";

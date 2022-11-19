@@ -98,6 +98,7 @@ public abstract class Entity : MonoBehaviour
         currentMagicType = magicType;
     }
 
+    protected virtual void TakeDamage(float dmg)
     public void TakeDamage(float dmg)
     {
         health -= dmg;
@@ -107,6 +108,6 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
-    public abstract void Die(); 
+    protected abstract void Die(); 
 
 }

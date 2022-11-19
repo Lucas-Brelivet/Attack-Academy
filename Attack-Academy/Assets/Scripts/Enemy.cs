@@ -224,7 +224,24 @@ public class Enemy : Entity
         Gizmos.DrawWireSphere(transform.position, minDistancePathfinding);
     }
 
-   public override void Die()
+    protected override void TakeDamage(float dmg)
+    {
+        base.TakeDamage(dmg);
+        if (health > 0)
+        {
+            anim.Play("TakeHit");
+        }
+    }
+
+    protected override void Die()
+    {
+        anim.Play("Death");
+        anim.Update(0.1f);
+        AnimatorClipInfo[] acis = anim.GetCurrentAnimatorClipInfo(0);
+        Invoke(nameof(Delete), acis[^1].clip.length);
+    }
+
+    private void Delete()
     {
         Destroy(gameObject);
     }

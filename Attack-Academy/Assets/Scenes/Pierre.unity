@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &6524210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6524211}
+  m_Layer: 0
+  m_Name: SpawnPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6524211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6524210}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 972852894}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &148798877
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 167382643}
+  - component: {fileID: 167382644}
   m_Layer: 0
   m_Name: SpawnerManager
   m_TagString: Untagged
@@ -187,73 +219,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &414246568
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6553779642281375369, guid: ab3454306735f8240b5afd9cc2d0eb56, type: 3}
-  m_PrefabInstance: {fileID: 1529188962}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 414246570}
-  - component: {fileID: 414246569}
-  m_Layer: 0
-  m_Name: NavMesh
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &414246569
+--- !u!114 &167382644
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6553779642281375370, guid: ab3454306735f8240b5afd9cc2d0eb56, type: 3}
-  m_PrefabInstance: {fileID: 1529188962}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414246568}
+  m_GameObject: {fileID: 167382641}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 148387606d0ccd84fa326ca211f274ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ab4165136500ef44b187570bd91b85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_OverrideByGrid: 0
-  m_UseMeshPrefab: {fileID: 0}
-  m_CompressBounds: 0
-  m_OverrideVector: {x: 1, y: 1, z: 1}
-  m_DefaultArea: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_BuildHeightMesh: 0
-  m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: 7800ba24ce891a4448a9db825e0d2472, type: 2}
-  m_LastPosition: {x: 2.4462843, y: -0.43234807, z: -0.073181316}
-  m_LastRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
---- !u!4 &414246570
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6553779642281375371, guid: ab3454306735f8240b5afd9cc2d0eb56, type: 3}
-  m_PrefabInstance: {fileID: 1529188962}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414246568}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.4462843, y: -0.43234807, z: -0.073181316}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  _enemiesPrefab:
+  - type: 0
+    obj: {fileID: 0}
 --- !u!1 &637691715
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 972852894}
+  - component: {fileID: 972852895}
   m_Layer: 0
   m_Name: Spawner2
   m_TagString: Untagged
@@ -608,10 +589,24 @@ Transform:
   m_LocalPosition: {x: 7.4, y: -3.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6524211}
   m_Father: {fileID: 167382643}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &972852895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972852893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9493567a1ae394a9f1d6c0c2d2a859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesToSpawn: []
 --- !u!1 &1133373112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,3 +1080,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9493567a1ae394a9f1d6c0c2d2a859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesToSpawn:
+  - type: 0
+    delayBeforeNext: 1
+  - type: 0
+    delayBeforeNext: 0

@@ -5,8 +5,39 @@ using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemiesPrefab;
+    public enum EnemyType
+    {
+        Skeleton,
+        Dragon,
+    }
+
+    [Serializable]
+    public struct Enemy
+    {
+        [SerializeField]
+        public EnemyType type;
+        [SerializeField]
+        public GameObject obj;
+    }
+
+    private Dictionary<EnemyType, GameObject> enemiesPrefab;
+    [SerializeField] private Enemy[] _enemiesPrefab;
+    private List<GameObject> enemiesSpawned;
     private Spawner current;
+
+    void Awake()
+    {
+        enemiesPrefab = new Dictionary<EnemyType, GameObject>(_enemiesPrefab.Length);
+        foreach (Enemy enemy in _enemiesPrefab)
+        {
+            enemiesPrefab.Add(enemy.type, enemy.obj);
+        }
+
+        if (_enemiesPrefab.Length != Enum.GetNames(typeof(EnemyType)).Length)
+        {
+            Debug.LogError("Enemies Prefab should have all the Enemy Type in SpawnerManager");
+        }
+    }
 
     void Start()
     {
@@ -23,10 +54,14 @@ public class SpawnerManager : MonoBehaviour
             Debug.LogError("No Spawner in child of SpawnerManager");
             return;
         }
+        
+        current.StartWave();
     }
 
-    void Update()
+    public void SpawnEnemy(Vector2 position, EnemyType type)
     {
-        
+        GameObject spawnedEnemy = Instantiate(enemiesPrefab[type]);
+        spawnedEnemy.transform.position = position;
+        enemiesSpawned.Add(spawnedEnemy);
     }
 }

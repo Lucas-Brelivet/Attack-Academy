@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
     public static UiManager Instance { get; private set; }
+
+    [SerializeField] private Canvas gameCanvas;
+    [SerializeField] private Canvas pauseCanvas;
 
     [SerializeField] private TextMeshProUGUI timeToWaveText;
 
@@ -45,6 +49,23 @@ public class UiManager : MonoBehaviour
         {
             timeToWaveText.text = value + "s";
         }
+    }
+
+    public void Pause()
+    {
+        gameCanvas.enabled = false;
+        pauseCanvas.enabled = true;
+    }
+
+    public void Resume()
+    {
+        pauseCanvas.enabled = false;
+        gameCanvas.enabled = true;
+    }
+
+    public void ReturnToTitle()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void SelectMagicType(Utility.MagicType magicType)

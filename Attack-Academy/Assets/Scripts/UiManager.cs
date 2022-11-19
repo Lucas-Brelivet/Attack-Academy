@@ -56,6 +56,32 @@ public class UiManager : MonoBehaviour
         {
             timeToWaveText.text = value + "s";
         }
+
+        foreach (PlayerSpell ps in Player.Instance.GetComponent<PlayerPower>().playerSpells)
+        {
+            ColorBlock cb = new ColorBlock();
+            switch (ps.magicType)
+            {
+                case Utility.MagicType.Fire:
+                    cb = fireButton.colors;
+                    break;
+                case Utility.MagicType.Ice:
+                    cb = iceButton.colors;
+                    break;
+                case Utility.MagicType.Lightning:
+                    cb = lightningButton.colors;
+                    break;
+                case Utility.MagicType.Wind:
+                    cb = windButton.colors;
+                    break;
+            }
+            cb.normalColor = AlphaColor(cb.normalColor, ps.power / ps.distMax);
+        }
+    }
+
+    private Color AlphaColor(Color c, float alpha)
+    {
+        return new Color(c.r, c.g, c.b, alpha);
     }
 
     public void Pause()

@@ -23,7 +23,7 @@ public class PlayerSpell
 public class PlayerPower : MonoBehaviour
 {
     Player player;
-    [SerializeField] PlayerSpell[] playerSpells;
+    [SerializeField] public PlayerSpell[] playerSpells;
     [SerializeField] private float cooldownAttack;
 
     [SerializeField] private float durationConeSpell;
@@ -52,7 +52,6 @@ public class PlayerPower : MonoBehaviour
     private void Update()
     {
         UpdateCostAndPower();
-
     }
 
 

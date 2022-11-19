@@ -52,11 +52,13 @@ public class Enemy : Entity
 
     void Start()
     {
+        base.Start();
         anim.Play("Walk");
     }
 
     private void Update()
     {
+        base.Update();
         if (Player.Instance.transform.position.x - transform.position.x  >= 0)
         {
             transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);

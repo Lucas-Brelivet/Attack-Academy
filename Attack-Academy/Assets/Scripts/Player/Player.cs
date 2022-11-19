@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+
 [RequireComponent(typeof(NavMeshAgent))]
 
 public class Player : Entity
@@ -90,7 +92,8 @@ public class Player : Entity
 
     protected override void Die()
     {
-        print("ahah nul");
+        print("Player Dead");
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void ConsumeMana(float amount)

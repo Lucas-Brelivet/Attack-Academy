@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 0
   movementSpeed: 5
-  healthMax: 0
+  healthMax: 5
   manaMax: 100
   orientation: {x: 0, y: 0}
 --- !u!58 &3771008101134618921

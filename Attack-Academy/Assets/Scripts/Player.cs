@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.AI;
 public class Player : Entity
 {
     public static Player Instance { set; private get; }
+    NavMeshAgent agent;
 
     private Controls controls;
 
@@ -23,10 +24,15 @@ public class Player : Entity
             return;
         }
         Instance = this;
+        //navmesh
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
 
     void Start()
     {
+        base.Start();
         controls = new Controls();
         controls.Player.Enable();
         controls.Player.Move.performed += OnMove;
@@ -53,8 +59,8 @@ public class Player : Entity
             Vector2 mousePosition = controls.Player.MousePosition.ReadValue<Vector2>();
             moveTarget = Camera.main.ScreenToWorldPoint(mousePosition);
         }
-        transform.Translate((moveTarget - (Vector2)(transform.position)).normalized * movementSpeed * Time.deltaTime);
-
+        //transform.Translate((moveTarget - (Vector2)(transform.position)).normalized * movementSpeed * Time.deltaTime);
+        agent.SetDestination(new Vector3(moveTarget.x, moveTarget.y, transform.position.z));
         if((moveTarget - (Vector2) transform.position).magnitude < movementSpeed * Time.deltaTime)
         {
             move = false;
@@ -67,9 +73,4 @@ public class Player : Entity
         int sign = delta < 0 ? -1 : 1;
         ScrollMagicType(sign);
     }
-
-    // void OnDestroy()
-    // {
-    //     Destroy(controls);
-    // }
 }

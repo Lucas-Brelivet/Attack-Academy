@@ -180,10 +180,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpells:
   - magicType: 0
-    spellType: 0
-    costMult: 0
-    powerMult: 0
-    distMax: 0
+    spellType: 2
+    costMult: 1
+    powerMult: 1
+    distMax: 100
   cooldownAttack: 1
   durationConeSpell: 2
   cone: {fileID: 8187996502675787820}

@@ -104,8 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 0
   movementSpeed: 5
-  healthMax: 100
-  manaMax: 100
+  healthMax: 0
 --- !u!58 &3771008101134618921
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -154,7 +153,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 100
+  m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -183,7 +182,6 @@ MonoBehaviour:
     costMult: 0
     powerMult: 0
     distMax: 0
-<<<<<<< HEAD
   cooldownAttack: 1
   durationConeSpell: 2
   cone: {fileID: 0}
@@ -264,4 +262,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  cooldown: 0

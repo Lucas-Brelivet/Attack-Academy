@@ -11,4 +11,18 @@ public class Utility : MonoBehaviour
         Poison,
         Earth
     };
+
+    public enum EnemyState
+    {
+        Attack,
+        ApprochToAttack,
+        StayAtDistance
+    }
+
+    public enum SpellType
+    {
+        Zone,
+        Bullet, 
+        Cone
+    }
 }

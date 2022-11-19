@@ -214,7 +214,8 @@ public class Enemy : Entity
     {
         if (other.gameObject == Player.Instance.gameObject)
         {
-            Debug.Log("Deal damage to player !");
+            Debug.Log("Deal damage to player");
+            Player.Instance.TakeDamage(1);
         }
     }
 

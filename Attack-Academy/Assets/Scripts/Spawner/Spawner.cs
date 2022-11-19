@@ -35,6 +35,7 @@ public class Spawner : MonoBehaviour
 
     public void StartWave()
     {
+        Debug.Log("Start Wave");
         StartCoroutine(Wave());
     }
 

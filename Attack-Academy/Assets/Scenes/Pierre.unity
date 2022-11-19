@@ -233,9 +233,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemiesPrefab:
   - type: 0
-    obj: {fileID: 1853488308039070038, guid: 315b4510d52d35848a12a3d32a72bcca, type: 3}
+    obj: {fileID: 0}
   - type: 1
-    obj: {fileID: 1853488308039070038, guid: 315b4510d52d35848a12a3d32a72bcca, type: 3}
+    obj: {fileID: 0}
+  spawnerStartTimer:
+  - 1.63
+  - 2.89
 --- !u!1 &637691715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,8 +1089,6 @@ MonoBehaviour:
   - type: 0
     delayBeforeNext: 1
   - type: 0
-    delayBeforeNext: 0
+    delayBeforeNext: 1
   - type: 0
-    delayBeforeNext: 0
-  - type: 0
-    delayBeforeNext: 0
+    delayBeforeNext: 1

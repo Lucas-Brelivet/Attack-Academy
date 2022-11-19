@@ -18,4 +18,11 @@ public class Utility : MonoBehaviour
         ApprochToAttack,
         StayAtDistance
     }
+
+    public enum SpellType
+    {
+        Zone,
+        Bullet, 
+        Cone
+    }
 }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3771008101134618926}
   - component: {fileID: 3771008101134618927}
   - component: {fileID: 695571267580888727}
+  - component: {fileID: 7908436017288247185}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -205,6 +206,26 @@ MonoBehaviour:
   cone: {fileID: 8187996502675787820}
   durationZoneSpell: 2
   zone: {fileID: 6846744234936214162}
+--- !u!95 &7908436017288247185
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771008101134618917}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f3e671b76281ee43b70d05ceb781a30, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6846744234936214162
 GameObject:
   m_ObjectHideFlags: 0

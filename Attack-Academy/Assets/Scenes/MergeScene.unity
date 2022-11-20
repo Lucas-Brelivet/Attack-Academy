@@ -323,8 +323,8 @@ MonoBehaviour:
   - type: 1
     obj: {fileID: 2100562903826666639, guid: a9f82f7675e4b3248bcedba438eb9184, type: 3}
   spawnerStartTimer:
-  - 100
-  - 100
+  - 5
+  - 20
 --- !u!4 &380199201
 Transform:
   m_ObjectHideFlags: 0
@@ -2052,7 +2052,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 548058097567232614, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
       propertyPath: damage
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 695571267580888727, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
       propertyPath: cooldownAttack
@@ -2065,6 +2065,14 @@ PrefabInstance:
     - target: {fileID: 695571267580888727, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
       propertyPath: durationZoneSpell
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 695571267580888727, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
+      propertyPath: playerSpells.Array.data[0].distMax
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 695571267580888727, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
+      propertyPath: playerSpells.Array.data[1].distMax
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 695571267580888727, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
       propertyPath: playerSpells.Array.data[0].powerMult

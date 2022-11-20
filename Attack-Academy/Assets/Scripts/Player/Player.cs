@@ -19,6 +19,7 @@ public class Player : Entity
     public Controls controls;
 
     public float manaMax = 100f;
+    public float manaRegen = 1f;
     public float mana{get; private set;}
 
     //The point towards which the player is moving
@@ -66,6 +67,9 @@ public class Player : Entity
     public override void Update()
     {
         base.Update();
+
+        mana += manaRegen*Time.deltaTime;
+        UiManager.Instance.UpdateMana();
 
         if(attacking)
         {

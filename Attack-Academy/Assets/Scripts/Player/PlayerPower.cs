@@ -12,6 +12,7 @@ public class PlayerSpell
     public Utility.MagicType magicType;
     public Utility.SpellType spellType;
     public float costMult;
+    public float costBase;
     public float powerMult;
     public float distMax;
     public float cost { get; set; }
@@ -61,7 +62,7 @@ public class PlayerPower : MonoBehaviour
     {
         foreach(var playerSpell in playerSpells)
         {
-            playerSpell.cost = 1 + Mathf.Min(player.minDistToStele[playerSpell.magicType],playerSpell.distMax) * playerSpell.costMult;
+            playerSpell.cost = playerSpell.costBase + Mathf.Min(player.minDistToStele[playerSpell.magicType],playerSpell.distMax) * playerSpell.costMult;
             playerSpell.power = Mathf.Min(player.minDistToStele[playerSpell.magicType], playerSpell.distMax) * playerSpell.powerMult;
         }
     }
@@ -86,18 +87,20 @@ public class PlayerPower : MonoBehaviour
         if (canAttack)
         {
             var spells = playerSpells.Where(x => x.magicType == player.currentMagicType);
-            if (number < playerSpells.Length)
+            if (number < playerSpells.Length )
             {
                 var spell = spells.ElementAtOrDefault(number);
-                if (spell != null)
+                if (spell != null && player.mana >= spell.cost)
                 {
                     if (spell.spellType == Utility.SpellType.Cone)
                     {
                         ConeAttack(spell.power);
+                        player.ConsumeMana(spell.cost);
                     }
                     else if (spell.spellType == Utility.SpellType.Zone)
                     {
                         ZoneAttack(spell.power);
+                        player.ConsumeMana(spell.cost);
                     }
 
                     AnimateCharacter();

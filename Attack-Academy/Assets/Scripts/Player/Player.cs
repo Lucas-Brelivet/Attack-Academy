@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 public class Player : Entity
 {
     public static Player Instance { get; private set; }
-    NavMeshAgent agent;
+    public NavMeshAgent agent{get; private set;}
     private Animator animator;
 
     [HideInInspector]
@@ -26,6 +26,7 @@ public class Player : Entity
 
     private bool move = false;
     private bool idle = true;
+    [HideInInspector] public bool attacking = false;
 
     public Utility.Direction currentDirection{get; private set;} = Utility.Direction.Down;
 
@@ -66,15 +67,21 @@ public class Player : Entity
     {
         base.Update();
 
+        if(attacking)
+        {
+            idle = false;
+        }
         if(move)
         {
-            Move();
-            ChooseAnimation();
+            if(!attacking)
+            {
+                Move();
+                ChooseAnimation();
+            }
         }
-        else
+        else if(!idle && !attacking)
         {
             animator.SetTrigger("Idle");
-            Debug.Log("Set Idle");
             idle = true;
         }
         
@@ -118,32 +125,25 @@ public class Player : Entity
         else
         {
             direction = agent.velocity.y > 0 ? Utility.Direction.Up : Utility.Direction.Down;
-            //Debug.Log(direction);
         }
 
         if(direction != currentDirection || idle)
         {
             idle = false;
             currentDirection = direction;
-            //Debug.Log(currentDirection);
             switch(currentDirection)
             {
                 case Utility.Direction.Down:
                     animator.SetTrigger("WalkDown");
-                    Debug.Log((agent.destination - transform.position).magnitude);
-                    //Debug.Log("WalkDown");
                     break;
                 case Utility.Direction.Left:
                     animator.SetTrigger("WalkLeft");
-                    //Debug.Log("WalkLeft");
                     break;
                 case Utility.Direction.Up:
                     animator.SetTrigger("WalkUp");
-                    //Debug.Log("WalkUp");
                     break;
                 case Utility.Direction.Right:
                     animator.SetTrigger("WalkRight");
-                    //Debug.Log("WalkRight");
                     break;
             }
         }

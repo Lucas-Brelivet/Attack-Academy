@@ -15,6 +15,7 @@ public class ClickableUI : MonoBehaviour
             if(!Player.Instance.controls.Player.Move.IsPressed())
             {
                 Player.Instance.controls.Player.Move.Disable();
+
             }
         }
         else

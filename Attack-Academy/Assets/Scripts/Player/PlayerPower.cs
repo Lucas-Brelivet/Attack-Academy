@@ -23,6 +23,7 @@ public class PlayerSpell
 public class PlayerPower : MonoBehaviour
 {
     Player player;
+    Animator animator;
     [SerializeField] public PlayerSpell[] playerSpells;
     [SerializeField] private float cooldownAttack;
 
@@ -40,6 +41,7 @@ public class PlayerPower : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
+        animator = GetComponent<Animator>();
         controls = new Controls();
         controls.Player.Enable();
         controls.Player.Attack1.performed += AttackOne;
@@ -98,12 +100,43 @@ public class PlayerPower : MonoBehaviour
                         ZoneAttack(spell.power);
                     }
 
-
+                    AnimateCharacter();
 
                     StartCoroutine(Cooldown());
                 }
             }          
         }
+    }
+
+    void AnimateCharacter()
+    {
+        Utility.Direction direction;
+        Vector2 mouseDirection = (Camera.main.ScreenToWorldPoint(controls.Player.MousePosition.ReadValue<Vector2>()) - transform.position);
+
+        if(Mathf.Abs(mouseDirection.x) > Mathf.Abs(mouseDirection.y))
+        {
+            direction = mouseDirection.x > 0 ? Utility.Direction.Right : Utility.Direction.Left;
+        }
+        else
+        {
+            direction = mouseDirection.y > 0 ? Utility.Direction.Up : Utility.Direction.Down;
+        }
+
+        switch(direction)
+            {
+                case Utility.Direction.Down:
+                    animator.SetTrigger("AttackDown");
+                    break;
+                case Utility.Direction.Left:
+                    animator.SetTrigger("AttackLeft");
+                    break;
+                case Utility.Direction.Up:
+                    animator.SetTrigger("AttackUp");
+                    break;
+                case Utility.Direction.Right:
+                    animator.SetTrigger("AttackRight");
+                    break;
+            }
     }
 
     IEnumerator Cooldown()
@@ -115,7 +148,13 @@ public class PlayerPower : MonoBehaviour
 
     IEnumerator CooldownCone()
     {
+        Player.Instance.attacking = true;
+        Player.Instance.agent.isStopped = true;
+        Player.Instance.controls.Player.Move.Disable();
         yield return new WaitForSeconds(durationConeSpell);
+        Player.Instance.controls.Player.Move.Enable();
+        Player.Instance.agent.isStopped = false;
+        Player.Instance.attacking = false;
         cone.SetActive(false);
     }
   
@@ -138,7 +177,13 @@ public class PlayerPower : MonoBehaviour
 
     IEnumerator CooldownZone()
     {
+        Player.Instance.attacking = true;
+        Player.Instance.agent.isStopped = true;
+        Player.Instance.controls.Player.Move.Disable();
         yield return new WaitForSeconds(durationConeSpell);
+        Player.Instance.controls.Player.Move.Enable();
+        Player.Instance.agent.isStopped = false;
+        Player.Instance.attacking = false;
         zone.SetActive(false);
     }
 }

@@ -27,6 +27,7 @@ public class UiManager : MonoBehaviour
     private Controls controls;
 
 
+
     void Awake()
     {
         if (Instance != null)

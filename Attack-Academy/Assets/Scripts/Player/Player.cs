@@ -60,7 +60,6 @@ public class Player : Entity
         UiManager.Instance.UpdateMana();
 
         animator = GetComponent<Animator>();
-        Debug.Log(currentDirection);
     }
 
     public override void Update()
@@ -70,12 +69,16 @@ public class Player : Entity
         if(move)
         {
             Move();
+            ChooseAnimation();
         }
         else
         {
             animator.SetTrigger("Idle");
+            Debug.Log("Set Idle");
             idle = true;
         }
+        
+
         previousVelocity = agent.velocity;
 
         Vector2 mousePosition = controls.Player.MousePosition.ReadValue<Vector2>();
@@ -98,7 +101,16 @@ public class Player : Entity
         //transform.Translate((moveTarget - (Vector2)(transform.position)).normalized * movementSpeed * Time.deltaTime);
         agent.SetDestination(new Vector3(moveTarget.x, moveTarget.y, transform.position.z));
 
-        Utility.Direction direction = Utility.Direction.Down;
+
+        if((agent.destination - transform.position).magnitude <= Mathf.Abs(agent.baseOffset) + 0.001f)
+        {
+            move = false;
+        }
+    }
+
+    private void ChooseAnimation()
+    {
+        Utility.Direction direction = currentDirection;
         if(Mathf.Abs(agent.velocity.x) > Mathf.Abs(agent.velocity.y))
         {
             direction = agent.velocity.x > 0 ? Utility.Direction.Right : Utility.Direction.Left;
@@ -106,32 +118,34 @@ public class Player : Entity
         else
         {
             direction = agent.velocity.y > 0 ? Utility.Direction.Up : Utility.Direction.Down;
+            //Debug.Log(direction);
         }
 
         if(direction != currentDirection || idle)
         {
             idle = false;
             currentDirection = direction;
+            //Debug.Log(currentDirection);
             switch(currentDirection)
             {
                 case Utility.Direction.Down:
                     animator.SetTrigger("WalkDown");
+                    Debug.Log((agent.destination - transform.position).magnitude);
+                    //Debug.Log("WalkDown");
                     break;
                 case Utility.Direction.Left:
                     animator.SetTrigger("WalkLeft");
+                    //Debug.Log("WalkLeft");
                     break;
                 case Utility.Direction.Up:
                     animator.SetTrigger("WalkUp");
+                    //Debug.Log("WalkUp");
                     break;
                 case Utility.Direction.Right:
                     animator.SetTrigger("WalkRight");
+                    //Debug.Log("WalkRight");
                     break;
             }
-        }
-
-        if(!agent.hasPath)
-        {
-            move = false;
         }
     }
 

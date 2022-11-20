@@ -23,7 +23,6 @@ public abstract class Entity : MonoBehaviour
 
     public virtual void Start()
     {
-        Physics2D.queriesStartInColliders = false;
         steleList = FindObjectsOfType<Stele>();
         currentMagicType = Utility.MagicType.Fire;
         minDistToStele = new Dictionary<Utility.MagicType, float>();

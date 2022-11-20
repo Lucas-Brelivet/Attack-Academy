@@ -25,12 +25,4 @@ public class Utility : MonoBehaviour
         Bullet, 
         Cone
     }
-
-    public enum Direction
-    {
-        Down,
-        Left,
-        Up,
-        Right
-    }
 }

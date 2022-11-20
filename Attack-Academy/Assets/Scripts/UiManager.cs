@@ -5,7 +5,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEditor;
 
 public class UiManager : MonoBehaviour
 {
@@ -24,10 +23,6 @@ public class UiManager : MonoBehaviour
     [SerializeField] Button lightningButton;
     [SerializeField] Button windButton;
     [SerializeField] Image selectionArrow;
-    
-    private Controls controls;
-
-
 
     void Awake()
     {
@@ -47,78 +42,32 @@ public class UiManager : MonoBehaviour
         healthBar.value = Player.Instance.healthMax;
         manaBar.maxValue = Player.Instance.manaMax;
         manaBar.value = Player.Instance.manaMax;
-
-        controls = new Controls();
-        controls.UI.Enable();
-        controls.UI.Pause.performed += context => Pause();
     }
 
     void Update()
     {
         // int value = Mathf.Clamp((int)(SpawnerManager.Instance.spawnerTimeWait - Time.time), 0, int.MaxValue);
-        if(SpawnerManager.Instance != null)
+        int value = (int) (SpawnerManager.Instance.spawnerTimeWait - Time.time + 0.5f);
+        if (value <= 0)
         {
-            int value = (int) (SpawnerManager.Instance.spawnerTimeWait - Time.time + 0.5f);
-            if (value <= 0)
-            {
-                timeToWaveText.text = "";
-            }
-            else
-            {
-                timeToWaveText.text = value + "s";
-            }
+            timeToWaveText.text = "";
         }
-
-        foreach (PlayerSpell ps in Player.Instance.GetComponent<PlayerPower>().playerSpells)
+        else
         {
-            ColorBlock cb = new ColorBlock();
-            switch (ps.magicType)
-            {
-                case Utility.MagicType.Fire:
-                    cb = fireButton.colors;
-                    break;
-                case Utility.MagicType.Ice:
-                    cb = iceButton.colors;
-                    break;
-                case Utility.MagicType.Lightning:
-                    cb = lightningButton.colors;
-                    break;
-                case Utility.MagicType.Wind:
-                    cb = windButton.colors;
-                    break;
-            }
-            cb.normalColor = AlphaColor(cb.normalColor, ps.power / ps.distMax);
+            timeToWaveText.text = value + "s";
         }
-    }
-
-    private Color AlphaColor(Color c, float alpha)
-    {
-        return new Color(c.r, c.g, c.b, alpha);
     }
 
     public void Pause()
     {
         gameCanvas.enabled = false;
         pauseCanvas.enabled = true;
-        Time.timeScale = 0;
     }
 
     public void Resume()
     {
         pauseCanvas.enabled = false;
         gameCanvas.enabled = true;
-        Time.timeScale = 1;
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-#if UNITY_EDITOR
-        if (Application.isEditor)
-        {
-            EditorApplication.isPlaying = false;
-        }
-#endif
     }
 
     public void ReturnToTitle()
@@ -181,10 +130,5 @@ public class UiManager : MonoBehaviour
     public void UpdateMana()
     {
         manaBar.value = Player.Instance.mana;
-    }
-
-    void OnDestroy()
-    {
-        controls.Dispose();
     }
 }

@@ -38,7 +38,8 @@ public class ConeAttack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Enemy"))
-        { 
+        {
+            print("Enemy Touche");
             collision.GetComponent<Entity>().TakeDamage(damage);
         }
     }

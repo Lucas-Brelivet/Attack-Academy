@@ -8,12 +8,15 @@ using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(LineRenderer))]
 
 public class Player : Entity
 {
     public static Player Instance { get; private set; }
     public NavMeshAgent agent{get; private set;}
     private Animator animator;
+
+    private LineRenderer lr;
 
     [HideInInspector]
     public Controls controls;
@@ -62,6 +65,7 @@ public class Player : Entity
         UiManager.Instance.UpdateMana();
 
         animator = GetComponent<Animator>();
+        lr = GetComponent<LineRenderer>();
     }
 
     public override void Update()
@@ -95,6 +99,49 @@ public class Player : Entity
         Vector2 mousePosition = controls.Player.MousePosition.ReadValue<Vector2>();
         Vector3 target = Camera.main.ScreenToWorldPoint(mousePosition);
         orientation = target;
+
+        float minDist = float.PositiveInfinity;
+        Stele minStele = null;
+        foreach (Stele stele in steleList)
+        {
+            float dist = Vector2.Distance(stele.transform.position, transform.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                minStele = stele;
+            }
+        }
+
+        if (minStele != null)
+        {
+            lr.enabled = true;
+            lr.SetPosition(1, minStele.transform.position - transform.position);
+            float dist = Mathf.Clamp((minStele.transform.position - transform.position).magnitude, 0, maxDistance);
+            float alpha = dist / maxDistance;
+            switch (minStele.magicType)
+            {
+                case Utility.MagicType.Fire:
+                    lr.startColor = new Color(1, 0, 0, alpha);
+                    lr.endColor = new Color(1, 0, 0, (1-alpha)/2);
+                    break;
+                case Utility.MagicType.Ice:
+                    lr.startColor = new Color(0, 0, 1, alpha);
+                    lr.endColor = new Color(0, 0, 1, (1-alpha)/2);
+                    break;
+                case Utility.MagicType.Lightning:
+                    lr.startColor = new Color(1, 1, 0, alpha);
+                    lr.endColor = new Color(1, 1, 0, (1-alpha)/2);
+                    break;
+                case Utility.MagicType.Wind:
+                    lr.startColor = new Color(0, 1, 0, alpha);
+                    lr.endColor = new Color(0, 1, 0, (1-alpha)/2);
+                    break;
+            }
+        }
+        else
+        {
+            lr.enabled = false;
+        }
     }
 
     private void OnMove(InputAction.CallbackContext context)

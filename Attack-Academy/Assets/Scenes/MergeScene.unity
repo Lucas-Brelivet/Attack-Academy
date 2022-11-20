@@ -76593,22 +76593,6 @@ PrefabInstance:
       propertyPath: durationZoneSpell
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 695571267580888727, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
-      propertyPath: playerSpells.Array.data[0].distMax
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 695571267580888727, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
-      propertyPath: playerSpells.Array.data[1].distMax
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 695571267580888727, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
-      propertyPath: playerSpells.Array.data[0].powerMult
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 695571267580888727, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
-      propertyPath: playerSpells.Array.data[1].powerMult
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 1490247880524562627, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
       propertyPath: m_SortingOrder
       value: 10

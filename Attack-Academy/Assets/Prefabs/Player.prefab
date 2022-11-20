@@ -196,56 +196,56 @@ MonoBehaviour:
   playerSpells:
   - magicType: 0
     spellType: 2
-    costMult: 1
-    costBase: 0
-    powerMult: 100
-    distMax: 30
+    costMult: 0.2
+    costBase: 2
+    powerMult: 0.4
+    distMax: 20
   - magicType: 0
     spellType: 0
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.4
+    costBase: 4
+    powerMult: 0.3
+    distMax: 20
   - magicType: 1
     spellType: 2
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.2
+    costBase: 2
+    powerMult: 0.4
+    distMax: 20
   - magicType: 1
     spellType: 0
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.4
+    costBase: 4
+    powerMult: 0.3
+    distMax: 20
   - magicType: 2
     spellType: 2
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.2
+    costBase: 2
+    powerMult: 0.4
+    distMax: 20
   - magicType: 2
     spellType: 0
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.4
+    costBase: 4
+    powerMult: 0.3
+    distMax: 20
   - magicType: 3
     spellType: 2
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.2
+    costBase: 2
+    powerMult: 0.4
+    distMax: 20
   - magicType: 3
     spellType: 0
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
-  cooldownAttack: 1
-  durationConeSpell: 1
+    costMult: 0.4
+    costBase: 4
+    powerMult: 0.3
+    distMax: 20
+  cooldownAttack: 0.5
+  durationConeSpell: 0.5
   cone: {fileID: 8187996502675787820}
-  durationZoneSpell: 2
+  durationZoneSpell: 1.5
   zone: {fileID: 6846744234936214162}
 --- !u!120 &2080471165424047436
 LineRenderer:
@@ -293,7 +293,7 @@ LineRenderer:
   - {x: 5, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.6
+    widthMultiplier: 0.4
     widthCurve:
       serializedVersion: 2
       m_Curve:

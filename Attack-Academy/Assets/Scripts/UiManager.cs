@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class UiManager : MonoBehaviour
 {
@@ -99,12 +100,25 @@ public class UiManager : MonoBehaviour
     {
         gameCanvas.enabled = false;
         pauseCanvas.enabled = true;
+        Time.timeScale = 0;
     }
 
     public void Resume()
     {
         pauseCanvas.enabled = false;
         gameCanvas.enabled = true;
+        Time.timeScale = 1;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        if (Application.isEditor)
+        {
+            EditorApplication.isPlaying = false;
+        }
+#endif
     }
 
     public void ReturnToTitle()

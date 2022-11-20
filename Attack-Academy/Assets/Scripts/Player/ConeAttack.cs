@@ -25,7 +25,7 @@ public class ConeAttack : MonoBehaviour
         }
         else if (magic == Utility.MagicType.Wind)
         {
-            render.sprite = dictSprite[3];
+            render.sprite = dictSprite[2];
         }
         else 
         {

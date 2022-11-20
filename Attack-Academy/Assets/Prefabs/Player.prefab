@@ -242,10 +242,10 @@ MonoBehaviour:
     costBase: 4
     powerMult: 0.3
     distMax: 20
-  cooldownAttack: 1
-  durationConeSpell: 1
+  cooldownAttack: 0.5
+  durationConeSpell: 0.5
   cone: {fileID: 8187996502675787820}
-  durationZoneSpell: 2
+  durationZoneSpell: 1.5
   zone: {fileID: 6846744234936214162}
 --- !u!120 &2080471165424047436
 LineRenderer:

@@ -9,7 +9,7 @@ public abstract class Entity : MonoBehaviour
 {
     [SerializeField]
     protected float maxDistance;
-    private Stele[] steleList;
+    protected Stele[] steleList;
     public Dictionary<Utility.MagicType, float> minDistToStele { get; private set; }
     float powerMultiplicator;
     [SerializeField]

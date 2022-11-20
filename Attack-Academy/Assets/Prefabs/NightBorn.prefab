@@ -104,8 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 100
   movementSpeed: 0.8
-  healthMax: 5
-  attackTimer: 4
+  healthMax: 15
+  attackTimer: 5
   minDistancePathfinding: 2.5
   minTargetDistance: 1.2
   maxTargetDistance: 2.5

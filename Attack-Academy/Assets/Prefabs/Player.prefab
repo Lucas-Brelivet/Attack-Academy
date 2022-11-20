@@ -196,52 +196,52 @@ MonoBehaviour:
   playerSpells:
   - magicType: 0
     spellType: 2
-    costMult: 1
-    costBase: 0
-    powerMult: 100
-    distMax: 30
+    costMult: 0.2
+    costBase: 2
+    powerMult: 0.4
+    distMax: 20
   - magicType: 0
     spellType: 0
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.4
+    costBase: 4
+    powerMult: 0.3
+    distMax: 20
   - magicType: 1
     spellType: 2
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.2
+    costBase: 2
+    powerMult: 0.4
+    distMax: 20
   - magicType: 1
     spellType: 0
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.4
+    costBase: 4
+    powerMult: 0.3
+    distMax: 20
   - magicType: 2
     spellType: 2
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.2
+    costBase: 2
+    powerMult: 0.4
+    distMax: 20
   - magicType: 2
     spellType: 0
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.4
+    costBase: 4
+    powerMult: 0.3
+    distMax: 20
   - magicType: 3
     spellType: 2
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.2
+    costBase: 2
+    powerMult: 0.4
+    distMax: 20
   - magicType: 3
     spellType: 0
-    costMult: 1
-    costBase: 0
-    powerMult: 1
-    distMax: 100
+    costMult: 0.4
+    costBase: 4
+    powerMult: 0.3
+    distMax: 20
   cooldownAttack: 1
   durationConeSpell: 1
   cone: {fileID: 8187996502675787820}

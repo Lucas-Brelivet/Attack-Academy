@@ -115,7 +115,6 @@ public class Player : Entity
         if (minStele != null)
         {
             lr.enabled = true;
-            Debug.Log("Working: " + minStele.transform.position);
             lr.SetPosition(1, minStele.transform.position - transform.position);
             float dist = Mathf.Clamp((minStele.transform.position - transform.position).magnitude, 0, maxDistance);
             float alpha = dist / maxDistance;

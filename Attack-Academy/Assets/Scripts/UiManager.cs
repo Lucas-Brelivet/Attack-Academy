@@ -16,8 +16,8 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI timeToWaveText;
 
-    [SerializeField] Slider healthBar;
-    [SerializeField] Slider manaBar;
+    [SerializeField] Image healthBar;
+    [SerializeField] Image manaBar;
 
     [SerializeField] Button fireButton;
     [SerializeField] Button iceButton;
@@ -43,10 +43,8 @@ public class UiManager : MonoBehaviour
     void Start()
     {
         SelectMagicType(Player.Instance.currentMagicType);
-        healthBar.maxValue = Player.Instance.healthMax;
-        healthBar.value = Player.Instance.healthMax;
-        manaBar.maxValue = Player.Instance.manaMax;
-        manaBar.value = Player.Instance.manaMax;
+        healthBar.fillAmount = Player.Instance.healthMax;
+        manaBar.fillAmount = Player.Instance.manaMax;
 
         controls = new Controls();
         controls.UI.Enable();
@@ -176,11 +174,11 @@ public class UiManager : MonoBehaviour
 
     public void UpdateHealth()
     {
-        healthBar.value = Player.Instance.health;
+        healthBar.fillAmount = Player.Instance.health/ Player.Instance.healthMax;
     }
     public void UpdateMana()
     {
-        manaBar.value = Player.Instance.mana;
+        manaBar.fillAmount = Player.Instance.mana / Player.Instance.manaMax;
     }
 
     void OnDestroy()

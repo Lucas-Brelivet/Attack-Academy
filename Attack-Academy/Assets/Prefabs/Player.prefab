@@ -194,12 +194,12 @@ MonoBehaviour:
   - magicType: 0
     spellType: 2
     costMult: 1
-    powerMult: 1
+    powerMult: 0.1
     distMax: 100
   - magicType: 0
     spellType: 0
     costMult: 1
-    powerMult: 1
+    powerMult: 0.1
     distMax: 100
   cooldownAttack: 1
   durationConeSpell: 2

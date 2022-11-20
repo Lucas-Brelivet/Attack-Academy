@@ -113,7 +113,7 @@ MonoBehaviour:
   obstructionDistance: 0.5
   maxRayCastDistance: 3
   numberCircleCast: 10
-  powerMult: 1
+  powerMult: 0.1
   enemyMagicType: 1
 --- !u!58 &3497783523894671606
 CircleCollider2D:

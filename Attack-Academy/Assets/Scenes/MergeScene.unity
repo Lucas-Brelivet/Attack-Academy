@@ -333,8 +333,8 @@ MonoBehaviour:
   - type: 1
     obj: {fileID: 2100562903826666639, guid: a9f82f7675e4b3248bcedba438eb9184, type: 3}
   spawnerStartTimer:
-  - 1
-  - 10
+  - 100
+  - 100
 --- !u!4 &380199201
 Transform:
   m_ObjectHideFlags: 0
@@ -934,7 +934,7 @@ PrefabInstance:
     - target: {fileID: 6553779642281375370, guid: ab3454306735f8240b5afd9cc2d0eb56, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 69a27d494befa114f95810c7a5ee4ada, type: 2}
+      objectReference: {fileID: 23800000, guid: ba61c5160655aab40b4081a258716478, type: 2}
     - target: {fileID: 6553779642281375371, guid: ab3454306735f8240b5afd9cc2d0eb56, type: 3}
       propertyPath: m_RootOrder
       value: 0

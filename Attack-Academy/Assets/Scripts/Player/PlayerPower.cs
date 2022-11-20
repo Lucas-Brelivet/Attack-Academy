@@ -52,7 +52,7 @@ public class PlayerPower : MonoBehaviour
     private void Update()
     {
         UpdateCostAndPower();
-
+        print(player.currentMagicType);
     }
 
 
@@ -84,6 +84,7 @@ public class PlayerPower : MonoBehaviour
     {
         if (canAttack)
         {
+
             var spells = playerSpells.Where(x => x.magicType == player.currentMagicType);
             if (number < playerSpells.Length)
             {
@@ -92,11 +93,11 @@ public class PlayerPower : MonoBehaviour
                 {
                     if (spell.spellType == Utility.SpellType.Cone)
                     {
-                        ConeAttack(spell.power);
+                        ConeAttack(spell.power, spell.magicType);
                     }
                     else if (spell.spellType == Utility.SpellType.Zone)
                     {
-                        ZoneAttack(spell.power);
+                        ZoneAttack(spell.power, spell.magicType);
                     }
 
 
@@ -121,19 +122,22 @@ public class PlayerPower : MonoBehaviour
     }
   
 
-    void ConeAttack(int damage)
+    void ConeAttack(float damage, Utility.MagicType magic)
     {
+        cone.GetComponent<ConeAttack>().magic = magic;
         cone.GetComponent<ConeAttack>().damage = damage;
         cone.SetActive(true);
         StartCoroutine(CooldownCone());
     }
 
 
-    void ZoneAttack(int damage)
+    void ZoneAttack(float damage,Utility.MagicType magic)
     {
+        zone.GetComponent<ZoneAttack>().magic = magic;
         zone.GetComponent<ZoneAttack>().damage = damage;
-        zone.GetComponent<ZoneAttack>().placeZone();
         zone.SetActive(true);
+        zone.GetComponent<ZoneAttack>().placeZone();
+       
         StartCoroutine(CooldownZone());
     }
 

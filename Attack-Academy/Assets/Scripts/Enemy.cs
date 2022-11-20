@@ -57,7 +57,6 @@ public class Enemy : Entity
     public override void Start()
     {
         base.Start();
-        anim.Play("Walk");
     }
 
     public override void Update()

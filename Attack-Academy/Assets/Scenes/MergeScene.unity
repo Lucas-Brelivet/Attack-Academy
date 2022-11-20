@@ -16853,7 +16853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3771008101134618923, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3771008101134618927, guid: 95a63a27bcdbe364fb52011ee47ef5d3, type: 3}
       propertyPath: m_Radius

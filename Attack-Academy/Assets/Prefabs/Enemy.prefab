@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2518516997640237222}
   - component: {fileID: 2518516997640237223}
   - component: {fileID: 2518516997640237216}
+  - component: {fileID: 8496418664878265916}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -111,6 +112,8 @@ MonoBehaviour:
   obstructionDistance: 1
   maxRayCastDistance: 5
   numberCircleCast: 20
+  powerMult: 0
+  enemyMagicType: 0
 --- !u!58 &2518516997640237222
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -170,3 +173,23 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &8496418664878265916
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518516997640237217}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -68,7 +68,7 @@ public class Player : Entity
     {
         base.Update();
 
-        mana += manaRegen*Time.deltaTime;
+        mana = Mathf.Min(manaMax, mana+ manaRegen*Time.deltaTime);
         UiManager.Instance.UpdateMana();
 
         if(attacking)

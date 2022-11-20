@@ -144,6 +144,10 @@ MonoBehaviour:
     obj: {fileID: 3497783523894671601, guid: 8c4bba1f2e88b7f45996d1105e5ec9a8, type: 3}
   - type: 1
     obj: {fileID: 2100562903826666639, guid: a9f82f7675e4b3248bcedba438eb9184, type: 3}
+  - type: 2
+    obj: {fileID: 2100562903826666639, guid: e368637e8be46944f8774da87c9795d9, type: 3}
+  - type: 3
+    obj: {fileID: 2100562903826666639, guid: 46b3063f4d607c14dae9ee276aec878d, type: 3}
   spawnerStartTimer:
   - 1
   - 10

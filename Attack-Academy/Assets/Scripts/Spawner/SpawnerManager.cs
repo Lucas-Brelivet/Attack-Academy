@@ -15,6 +15,8 @@ public class SpawnerManager : MonoBehaviour
     {
         Skeleton,
         Bat,
+        Demon_Fire,
+        NightBorn,
     }
 
     [Serializable]

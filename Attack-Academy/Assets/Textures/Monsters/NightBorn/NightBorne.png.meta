@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -103,6 +103,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1374,9 +1386,9 @@ TextureImporter:
       NightBorne_44: -1739499246
       NightBorne_1: -930183223
       NightBorne_8: 1479022969
-      NightBorne_46: -1225246448
-      NightBorne_20: 686615299
       NightBorne_54: -1889730424
+      NightBorne_20: 686615299
+      NightBorne_46: -1225246448
       NightBorne_19: -768051395
       NightBorne_21: 238212877
       NightBorne_43: 994104700

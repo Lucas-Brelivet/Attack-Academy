@@ -23,6 +23,9 @@ public class UiManager : MonoBehaviour
     [SerializeField] Button lightningButton;
     [SerializeField] Button windButton;
     [SerializeField] Image selectionArrow;
+    
+    private Controls controls;
+
 
     void Awake()
     {
@@ -42,19 +45,26 @@ public class UiManager : MonoBehaviour
         healthBar.value = Player.Instance.healthMax;
         manaBar.maxValue = Player.Instance.manaMax;
         manaBar.value = Player.Instance.manaMax;
+
+        controls = new Controls();
+        controls.UI.Enable();
+        controls.UI.Pause.performed += context => Pause();
     }
 
     void Update()
     {
         // int value = Mathf.Clamp((int)(SpawnerManager.Instance.spawnerTimeWait - Time.time), 0, int.MaxValue);
-        int value = (int) (SpawnerManager.Instance.spawnerTimeWait - Time.time + 0.5f);
-        if (value <= 0)
+        if(SpawnerManager.Instance != null)
         {
-            timeToWaveText.text = "";
-        }
-        else
-        {
-            timeToWaveText.text = value + "s";
+            int value = (int) (SpawnerManager.Instance.spawnerTimeWait - Time.time + 0.5f);
+            if (value <= 0)
+            {
+                timeToWaveText.text = "";
+            }
+            else
+            {
+                timeToWaveText.text = value + "s";
+            }
         }
 
         foreach (PlayerSpell ps in Player.Instance.GetComponent<PlayerPower>().playerSpells)
@@ -156,5 +166,10 @@ public class UiManager : MonoBehaviour
     public void UpdateMana()
     {
         manaBar.value = Player.Instance.mana;
+    }
+
+    void OnDestroy()
+    {
+        controls.Dispose();
     }
 }

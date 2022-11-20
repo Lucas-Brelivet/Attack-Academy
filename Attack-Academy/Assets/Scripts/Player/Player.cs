@@ -7,6 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Animator))]
 
 public class Player : Entity
 {
@@ -24,10 +25,14 @@ public class Player : Entity
     private Vector2 moveTarget;
 
     private bool move = false;
+    private bool idle = true;
 
     public Utility.Direction currentDirection{get; private set;} = Utility.Direction.Down;
 
-    public Vector2 orientation; 
+    public Vector2 orientation;
+
+    private Vector3 previousVelocity;
+
     void Awake()
     {
         if (Instance != null)
@@ -55,15 +60,23 @@ public class Player : Entity
         UiManager.Instance.UpdateMana();
 
         animator = GetComponent<Animator>();
+        Debug.Log(currentDirection);
     }
 
     public override void Update()
     {
         base.Update();
+
         if(move)
         {
             Move();
         }
+        else
+        {
+            animator.SetTrigger("Idle");
+            idle = true;
+        }
+        previousVelocity = agent.velocity;
 
         Vector2 mousePosition = controls.Player.MousePosition.ReadValue<Vector2>();
         Vector3 target = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -95,8 +108,9 @@ public class Player : Entity
             direction = agent.velocity.y > 0 ? Utility.Direction.Up : Utility.Direction.Down;
         }
 
-        if(direction != currentDirection)
+        if(direction != currentDirection || idle)
         {
+            idle = false;
             currentDirection = direction;
             switch(currentDirection)
             {
@@ -115,10 +129,10 @@ public class Player : Entity
             }
         }
 
-        /* if((moveTarget - (Vector2) transform.position).magnitude < movementSpeed * Time.deltaTime)
+        if(!agent.hasPath)
         {
             move = false;
-        } */
+        }
     }
 
     private void OnChangeMagicType(InputAction.CallbackContext context)
@@ -150,5 +164,10 @@ public class Player : Entity
     {
         mana += amount;
         UiManager.Instance.UpdateMana();
+    }
+
+    void OnDestroy()
+    {
+        controls.Dispose();
     }
 }

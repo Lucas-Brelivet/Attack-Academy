@@ -109,7 +109,7 @@ MonoBehaviour:
   movementSpeed: 5
   healthMax: 10
   manaMax: 100
-  manaRegen: 3
+  manaRegen: 8
   attacking: 0
   orientation: {x: 0, y: 0}
 --- !u!61 &2884578251815418124
@@ -170,7 +170,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -290,7 +290,7 @@ LineRenderer:
   m_SortingOrder: 4
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 10, y: 10, z: 0}
+  - {x: 5, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.6

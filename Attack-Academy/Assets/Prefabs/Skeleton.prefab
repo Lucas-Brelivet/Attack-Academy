@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504e78e167a4abc4ba024d74e2fa35d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 0
+  maxDistance: 100
   movementSpeed: 1
   healthMax: 10
   attackTimer: 4
@@ -113,6 +113,8 @@ MonoBehaviour:
   obstructionDistance: 0.5
   maxRayCastDistance: 3
   numberCircleCast: 10
+  powerMult: 0.1
+  enemyMagicType: 1
 --- !u!58 &3497783523894671606
 CircleCollider2D:
   m_ObjectHideFlags: 0

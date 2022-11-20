@@ -7,27 +7,34 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Animator))]
 
 public class Player : Entity
 {
     public static Player Instance { get; private set; }
-    NavMeshAgent agent;
+    public NavMeshAgent agent{get; private set;}
     private Animator animator;
 
     [HideInInspector]
     public Controls controls;
 
     public float manaMax = 100f;
+    public float manaRegen = 1f;
     public float mana{get; private set;}
 
     //The point towards which the player is moving
     private Vector2 moveTarget;
 
     private bool move = false;
+    private bool idle = true;
+    [HideInInspector] public bool attacking = false;
 
     public Utility.Direction currentDirection{get; private set;} = Utility.Direction.Down;
 
-    public Vector2 orientation; 
+    public Vector2 orientation;
+
+    private Vector3 previousVelocity;
+
     void Awake()
     {
         if (Instance != null)
@@ -60,10 +67,30 @@ public class Player : Entity
     public override void Update()
     {
         base.Update();
+
+        mana += manaRegen*Time.deltaTime;
+        UiManager.Instance.UpdateMana();
+
+        if(attacking)
+        {
+            idle = false;
+        }
         if(move)
         {
-            Move();
+            if(!attacking)
+            {
+                Move();
+                ChooseAnimation();
+            }
         }
+        else if(!idle && !attacking)
+        {
+            animator.SetTrigger("Idle");
+            idle = true;
+        }
+        
+
+        previousVelocity = agent.velocity;
 
         Vector2 mousePosition = controls.Player.MousePosition.ReadValue<Vector2>();
         Vector3 target = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -85,7 +112,16 @@ public class Player : Entity
         //transform.Translate((moveTarget - (Vector2)(transform.position)).normalized * movementSpeed * Time.deltaTime);
         agent.SetDestination(new Vector3(moveTarget.x, moveTarget.y, transform.position.z));
 
-        Utility.Direction direction = Utility.Direction.Down;
+
+        if((agent.destination - transform.position).magnitude <= Mathf.Abs(agent.baseOffset) + 0.001f)
+        {
+            move = false;
+        }
+    }
+
+    private void ChooseAnimation()
+    {
+        Utility.Direction direction = currentDirection;
         if(Mathf.Abs(agent.velocity.x) > Mathf.Abs(agent.velocity.y))
         {
             direction = agent.velocity.x > 0 ? Utility.Direction.Right : Utility.Direction.Left;
@@ -95,8 +131,9 @@ public class Player : Entity
             direction = agent.velocity.y > 0 ? Utility.Direction.Up : Utility.Direction.Down;
         }
 
-        if(direction != currentDirection)
+        if(direction != currentDirection || idle)
         {
+            idle = false;
             currentDirection = direction;
             switch(currentDirection)
             {
@@ -114,11 +151,6 @@ public class Player : Entity
                     break;
             }
         }
-
-        /* if((moveTarget - (Vector2) transform.position).magnitude < movementSpeed * Time.deltaTime)
-        {
-            move = false;
-        } */
     }
 
     private void OnChangeMagicType(InputAction.CallbackContext context)
@@ -150,5 +182,10 @@ public class Player : Entity
     {
         mana += amount;
         UiManager.Instance.UpdateMana();
+    }
+
+    void OnDestroy()
+    {
+        controls.Dispose();
     }
 }

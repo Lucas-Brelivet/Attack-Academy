@@ -12,6 +12,7 @@ public class PlayerSpell
     public Utility.MagicType magicType;
     public Utility.SpellType spellType;
     public float costMult;
+    public float costBase;
     public float powerMult;
     public float distMax;
     public float cost { get; set; }
@@ -23,7 +24,8 @@ public class PlayerSpell
 public class PlayerPower : MonoBehaviour
 {
     Player player;
-    [SerializeField] PlayerSpell[] playerSpells;
+    Animator animator;
+    [SerializeField] public PlayerSpell[] playerSpells;
     [SerializeField] private float cooldownAttack;
 
     [SerializeField] private float durationConeSpell;
@@ -40,6 +42,7 @@ public class PlayerPower : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
+        animator = GetComponent<Animator>();
         controls = new Controls();
         controls.Player.Enable();
         controls.Player.Attack1.performed += AttackOne;
@@ -52,7 +55,6 @@ public class PlayerPower : MonoBehaviour
     private void Update()
     {
         UpdateCostAndPower();
-        print(player.currentMagicType);
     }
 
 
@@ -60,7 +62,7 @@ public class PlayerPower : MonoBehaviour
     {
         foreach(var playerSpell in playerSpells)
         {
-            playerSpell.cost = 1 + Mathf.Min(player.minDistToStele[playerSpell.magicType],playerSpell.distMax) * playerSpell.costMult;
+            playerSpell.cost = playerSpell.costBase + Mathf.Min(player.minDistToStele[playerSpell.magicType],playerSpell.distMax) * playerSpell.costMult;
             playerSpell.power = Mathf.Min(player.minDistToStele[playerSpell.magicType], playerSpell.distMax) * playerSpell.powerMult;
         }
     }
@@ -86,26 +88,61 @@ public class PlayerPower : MonoBehaviour
         {
 
             var spells = playerSpells.Where(x => x.magicType == player.currentMagicType);
-            if (number < playerSpells.Length)
+            if (number < playerSpells.Length )
             {
                 var spell = spells.ElementAtOrDefault(number);
-                if (spell != null)
+                if (spell != null && player.mana >= spell.cost)
                 {
                     if (spell.spellType == Utility.SpellType.Cone)
                     {
                         ConeAttack(spell.power, spell.magicType);
+               
+                        player.ConsumeMana(spell.cost);
                     }
                     else if (spell.spellType == Utility.SpellType.Zone)
                     {
+                      
+                        player.ConsumeMana(spell.cost);
                         ZoneAttack(spell.power, spell.magicType);
                     }
 
-
+                    AnimateCharacter();
 
                     StartCoroutine(Cooldown());
                 }
             }          
         }
+    }
+
+    void AnimateCharacter()
+    {
+        Utility.Direction direction;
+        Vector2 mouseDirection = (Camera.main.ScreenToWorldPoint(controls.Player.MousePosition.ReadValue<Vector2>()) - transform.position);
+
+        if(Mathf.Abs(mouseDirection.x) > Mathf.Abs(mouseDirection.y))
+        {
+            direction = mouseDirection.x > 0 ? Utility.Direction.Right : Utility.Direction.Left;
+        }
+        else
+        {
+            direction = mouseDirection.y > 0 ? Utility.Direction.Up : Utility.Direction.Down;
+        }
+
+        switch(direction)
+            {
+                case Utility.Direction.Down:
+                    animator.SetTrigger("AttackDown");
+                    break;
+                case Utility.Direction.Left:
+                    animator.SetTrigger("AttackLeft");
+                    break;
+                case Utility.Direction.Up:
+                    animator.SetTrigger("AttackUp");
+                    break;
+                case Utility.Direction.Right:
+                    animator.SetTrigger("AttackRight");
+                    break;
+            }
     }
 
     IEnumerator Cooldown()
@@ -117,7 +154,13 @@ public class PlayerPower : MonoBehaviour
 
     IEnumerator CooldownCone()
     {
+        Player.Instance.attacking = true;
+        Player.Instance.agent.isStopped = true;
+        Player.Instance.controls.Player.Move.Disable();
         yield return new WaitForSeconds(durationConeSpell);
+        Player.Instance.controls.Player.Move.Enable();
+        Player.Instance.agent.isStopped = false;
+        Player.Instance.attacking = false;
         cone.SetActive(false);
     }
   
@@ -143,7 +186,13 @@ public class PlayerPower : MonoBehaviour
 
     IEnumerator CooldownZone()
     {
+        Player.Instance.attacking = true;
+        Player.Instance.agent.isStopped = true;
+        Player.Instance.controls.Player.Move.Disable();
         yield return new WaitForSeconds(durationConeSpell);
+        Player.Instance.controls.Player.Move.Enable();
+        Player.Instance.agent.isStopped = false;
+        Player.Instance.attacking = false;
         zone.SetActive(false);
     }
 }

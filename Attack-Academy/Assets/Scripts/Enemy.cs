@@ -31,6 +31,10 @@ public class Enemy : Entity
     float maxRayCastDistance;
     [SerializeField]
     int numberCircleCast;
+    [SerializeField]
+    float powerMult;
+    [SerializeField]
+    Utility.MagicType enemyMagicType;
 
     private float lastAttackTime;
     Utility.EnemyState currentState;
@@ -50,13 +54,12 @@ public class Enemy : Entity
         anim = GetComponent<Animator>();
     }
 
-    void Start()
+    public override void Start()
     {
         base.Start();
-        anim.Play("Walk");
     }
 
-    private void Update()
+    public override void Update()
     {
         base.Update();
         if (Player.Instance.transform.position.x - transform.position.x  >= 0)
@@ -215,7 +218,7 @@ public class Enemy : Entity
         if (other.gameObject == Player.Instance.gameObject)
         {
             Debug.Log("Deal damage to player");
-            Player.Instance.TakeDamage(1);
+            Player.Instance.TakeDamage(Mathf.Min(this.minDistToStele[this.enemyMagicType], this.maxDistance) * this.powerMult);
         }
     }
 

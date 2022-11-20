@@ -394,6 +394,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 965665029}
     m_Modifications:
+    - target: {fileID: 2055102311959635368, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9843137
+      objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635369, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
       propertyPath: m_Name
       value: PF Props Bush T6
@@ -441,6 +453,18 @@ PrefabInstance:
     - target: {fileID: 2055102311959635375, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102312182832480, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102312182832480, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102312182832480, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9843137
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
@@ -4884,6 +4908,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 965665029}
     m_Modifications:
     - target: {fileID: 2055102311959635368, guid: 0505844a909d2ea4996c19b67b2a40b9, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 0505844a909d2ea4996c19b67b2a40b9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 0505844a909d2ea4996c19b67b2a40b9, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9843137
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 0505844a909d2ea4996c19b67b2a40b9, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
@@ -7686,6 +7722,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 965665029}
     m_Modifications:
+    - target: {fileID: 2055102311959635368, guid: 4bd7b41600416b54395bf9936a05dc8e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 4bd7b41600416b54395bf9936a05dc8e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 4bd7b41600416b54395bf9936a05dc8e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9843137
+      objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635369, guid: 4bd7b41600416b54395bf9936a05dc8e, type: 3}
       propertyPath: m_Name
       value: PF Props Bush T4 (5)
@@ -30326,15 +30374,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2055102311959635368, guid: 0505844a909d2ea4996c19b67b2a40b9, type: 3}
       propertyPath: m_Color.b
-      value: 0.6933962
+      value: 0.80989677
       objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635368, guid: 0505844a909d2ea4996c19b67b2a40b9, type: 3}
       propertyPath: m_Color.g
-      value: 0.82708347
+      value: 0.80989677
       objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635368, guid: 0505844a909d2ea4996c19b67b2a40b9, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.9811321
       objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635368, guid: 0505844a909d2ea4996c19b67b2a40b9, type: 3}
       propertyPath: m_SortingOrder
@@ -31367,6 +31415,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 965665029}
     m_Modifications:
+    - target: {fileID: 2055102311959635368, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9843137
+      objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635369, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
       propertyPath: m_Name
       value: PF Props Bush T6 (7)
@@ -78042,6 +78102,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 965665029}
     m_Modifications:
+    - target: {fileID: 2055102311959635368, guid: 5b94bf9107369684a8153921f763da38, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 5b94bf9107369684a8153921f763da38, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 5b94bf9107369684a8153921f763da38, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9843137
+      objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635369, guid: 5b94bf9107369684a8153921f763da38, type: 3}
       propertyPath: m_Name
       value: PF Props Bush T2 (2)
@@ -78397,6 +78469,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 965665029}
     m_Modifications:
+    - target: {fileID: 2055102311959635368, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9843137
+      objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635369, guid: 39562e88b536753438a3153c5fbdf7b8, type: 3}
       propertyPath: m_Name
       value: PF Props Bush T6 (3)
@@ -81548,6 +81632,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 965665029}
     m_Modifications:
+    - target: {fileID: 2055102311959635368, guid: 4bd7b41600416b54395bf9936a05dc8e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 4bd7b41600416b54395bf9936a05dc8e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635368, guid: 4bd7b41600416b54395bf9936a05dc8e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9843137
+      objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635369, guid: 4bd7b41600416b54395bf9936a05dc8e, type: 3}
       propertyPath: m_Name
       value: PF Props Bush T4 (1)

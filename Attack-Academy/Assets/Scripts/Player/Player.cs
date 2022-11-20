@@ -107,7 +107,7 @@ public class Player : Entity
             float dist = Vector2.Distance(stele.transform.position, transform.position);
             if (dist < minDist)
             {
-                dist = minDist;
+                minDist = dist;
                 minStele = stele;
             }
         }
